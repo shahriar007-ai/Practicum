@@ -439,7 +439,7 @@
 								<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 									<div class="product product__style--3">
 										<div class="product__thumb">
-											<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/5.jpg" alt="product image')}}"></a>
+											<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/5.jpg')}}" alt="product image"></a>
 											<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/6.jpg')}}" alt="product image"></a>
 											<div class="hot__box">
 												<span class="hot-label">HOT</span>
