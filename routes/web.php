@@ -19,10 +19,10 @@ use App\Http\Controllers\FrontendController;
 
 
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/cart', [FrontendController::class, 'cart']);
-Route::get('/checkout', [FrontendController::class, 'checkout']);
-Route::get('/shop', [FrontendController::class, 'shop']);
-Route::get('/product/details', [FrontendController::class, 'productDetails']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
+Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
+Route::get('/books', [FrontendController::class, 'shop'])->name('books');
+Route::get('/book/details', [FrontendController::class, 'productDetails'])->name('books_details');
 
 
