@@ -130,7 +130,7 @@
 						<li><a href="{{route('books')}}">Books</a>
 							<ul>
 								<li><a href="{{route('books')}}">Shop Grid</a></li>
-								<li><a href="single-product.html">Single Product</a></li>
+								<li><a href="{{route('book_details')}}">Single Product</a></li>
 							</ul>
 						</li>
 						<li><a href="contact.html">Contact</a></li>
