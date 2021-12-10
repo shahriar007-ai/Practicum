@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,9 @@ use App\Http\Controllers\HomeController;
 
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/cart', [FrontendController::class, 'cart']);
+Route::get('/checkout', [FrontendController::class, 'checkout']);
+Route::get('/shop', [FrontendController::class, 'shop']);
+Route::get('/product/details', [FrontendController::class, 'productDetails']);
+
+
