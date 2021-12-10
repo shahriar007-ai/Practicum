@@ -21,7 +21,7 @@ use App\Http\Controllers\AdminController;
 
 // frontend
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home1');
 Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
 Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
 Route::get('/books', [FrontendController::class, 'shop'])->name('books');
@@ -32,3 +32,7 @@ Route::get('/book/details', [FrontendController::class, 'productDetails'])->name
 Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
