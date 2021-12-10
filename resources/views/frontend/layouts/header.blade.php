@@ -101,9 +101,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="mini_action cart">
-									<a class="cart__btn" href="cart.html">View and edit cart</a>
-								</div>
+								<
 							</div>
 						</div>
 						<!-- End Shopping Cart -->
