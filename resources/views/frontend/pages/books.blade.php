@@ -7,7 +7,7 @@
 				<div class="bradcaump__inner text-center">
 					<h2 class="bradcaump-title">Shop Grid</h2>
 					<nav class="bradcaump-content">
-						<a class="breadcrumb_item" href="index.html">Home</a>
+						<a class="breadcrumb_item" href="{{route('home')}}">Home</a>
 						<span class="brd-separetor">/</span>
 						<span class="breadcrumb_item active">Shop Grid</span>
 					</nav>
@@ -118,8 +118,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/1.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/2.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/1.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/2.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">BEST SALLER</span>
 									</div>
@@ -155,8 +155,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/3.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/4.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/3.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/4.jpg')}}" alt="product image"></a>
 									<div class="hot__box color--2">
 										<span class="hot-label">HOT</span>
 									</div>
@@ -192,8 +192,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/7.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/8.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/7.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/8.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">HOT</span>
 									</div>
@@ -229,8 +229,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/9.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/10.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/9.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/10.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">HOT</span>
 									</div>
@@ -266,8 +266,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/11.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/2.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/11.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/2.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">BEST SALER</span>
 									</div>
@@ -303,8 +303,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/1.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/6.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/1.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/6.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">BEST SALER</span>
 									</div>
@@ -340,8 +340,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/3.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/8.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/3.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/8.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">BEST SALER</span>
 									</div>
@@ -377,8 +377,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/10.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/2.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/10.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/2.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">BEST SALER</span>
 									</div>
@@ -414,8 +414,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/7.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/3.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/7.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/3.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">BEST SALER</span>
 									</div>
@@ -451,8 +451,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/1.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/5.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/1.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/5.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">BEST SALER</span>
 									</div>
@@ -488,8 +488,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/9.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/4.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/9.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/4.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">BEST SALER</span>
 									</div>
@@ -525,8 +525,8 @@
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="single-product.html"><img src="images/books/5.jpg" alt="product image"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/books/8.jpg" alt="product image"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/books/5.jpg')}}" alt="product image"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/books/8.jpg')}}" alt="product image"></a>
 									<div class="hot__box">
 										<span class="hot-label">BEST SALER</span>
 									</div>
@@ -573,8 +573,8 @@
 							<!-- Start Single Product -->
 							<div class="list__view">
 								<div class="thumb">
-									<a class="first__img" href="single-product.html"><img src="images/product/1.jpg" alt="product images"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/product/2.jpg" alt="product images"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/product/1.jpg')}}" alt="product images"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/product/2.jpg')}}" alt="product images"></a>
 								</div>
 								<div class="content">
 									<h2><a href="single-product.html">Ali Smith</a></h2>
@@ -603,8 +603,8 @@
 							<!-- Start Single Product -->
 							<div class="list__view mt--40">
 								<div class="thumb">
-									<a class="first__img" href="single-product.html"><img src="images/product/2.jpg" alt="product images"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/product/4.jpg" alt="product images"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/product/2.jpg')}}" alt="product images"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/product/4.jpg')}}" alt="product images"></a>
 								</div>
 								<div class="content">
 									<h2><a href="single-product.html">Blood In Water</a></h2>
@@ -633,8 +633,8 @@
 							<!-- Start Single Product -->
 							<div class="list__view mt--40">
 								<div class="thumb">
-									<a class="first__img" href="single-product.html"><img src="images/product/3.jpg" alt="product images"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/product/6.jpg" alt="product images"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/product/3.jpg')}}" alt="product images"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/product/6.jpg')}}" alt="product images"></a>
 								</div>
 								<div class="content">
 									<h2><a href="single-product.html">Madeness Overated</a></h2>
@@ -663,8 +663,8 @@
 							<!-- Start Single Product -->
 							<div class="list__view mt--40">
 								<div class="thumb">
-									<a class="first__img" href="single-product.html"><img src="images/product/4.jpg" alt="product images"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/product/6.jpg" alt="product images"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/product/4.jpg')}}" alt="product images"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/product/6.jpg')}}" alt="product images"></a>
 								</div>
 								<div class="content">
 									<h2><a href="single-product.html">Watching You</a></h2>
@@ -693,8 +693,8 @@
 							<!-- Start Single Product -->
 							<div class="list__view mt--40">
 								<div class="thumb">
-									<a class="first__img" href="single-product.html"><img src="images/product/5.jpg" alt="product images"></a>
-									<a class="second__img animation1" href="single-product.html"><img src="images/product/9.jpg" alt="product images"></a>
+									<a class="first__img" href="single-product.html"><img src="{{asset('assets/images/product/5.jpg')}}" alt="product images"></a>
+									<a class="second__img animation1" href="single-product.html"><img src="{{asset('assets/images/product/9.jpg')}}" alt="product images"></a>
 								</div>
 								<div class="content">
 									<h2><a href="single-product.html">Court Wings Run</a></h2>
