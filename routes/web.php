@@ -28,10 +28,13 @@ Route::get('/books', [FrontendController::class, 'shop'])->name('books');
 Route::get('/book/details', [FrontendController::class, 'productDetails'])->name('book_details');
 
 // admin
-
-Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-
-
+Route::middleware(['admin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    });
+});
+Route::get('/admin/senSorUser', [AdminController::class, 'showAdminLoginForm'])->name('show.admin.login'); 
+Route::post('/admin/senSorUser', [AdminController::class, 'postAdminLogin'])->name('admin.login.post'); 
 
 Auth::routes();
 
