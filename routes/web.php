@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,10 @@ Route::post('/admin/senSorUser', [AdminController::class, 'postAdminLogin'])->na
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//user
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('user')->group(function () {
+        Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    });
+});
