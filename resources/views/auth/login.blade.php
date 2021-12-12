@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>eShop Admin - Login</title>
+    <title>eShop User - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin_assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -41,11 +41,11 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-background"></div>
-                            <div class="col-lg-6 bg-danger">
+                            <div class="col-lg-6 bg-light">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4  text-light mb-4">Login</h1>
-                                        <img width="150" height="150" class="rounded mb-4" src="{{asset('admin_assets/img/undraw_profile_2.svg')}}" alt="">
+                                        <h1 class="h4 mb-3">Login</h1>
+                                        <img width="150" height="150" class="rounded-circle border mb-3" src="{{asset('admin_assets/img/undraw_profile_2.svg')}}" alt="">
                                         @if(Session::has('error'))
                                             <div class="alert alert-danger">
                                                 {{Session::get('error')}}
@@ -55,19 +55,19 @@
                                     <form class="user" method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group mb-4">
-                                            <input type="email" value="{{old('email')}}" name="email" class="form-control @error('email') is-invalid @enderror form-control-user"id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                                            <input type="email" required="" value="{{old('email')}}" name="email" class="form-control @error('email') is-invalid @enderror form-control-user"id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                             @error('email')
-                                                <span class="invalid-feedback" role="alert">
+                                                <small class="text-danger text-center ml-3" role="alert">
                                                     <strong>{{ $message }}</strong>
-                                                </span>
+                                                </small>
                                             @enderror
                                         </div>
                                         <div class="form-group mb-4">
-                                            <input type="password" name="password" class="form-control @error('email') is-invalid @enderror form-control-user" id="exampleInputPassword" placeholder="Password">
+                                            <input type="password" required="" name="password" class="form-control @error('email') is-invalid @enderror form-control-user" id="exampleInputPassword" placeholder="Password">
                                             @error('password')
-                                                <span class="invalid-feedback" role="alert">
+                                                <small class="text-danger text-center ml-3" role="alert">
                                                     <strong>{{ $message }}</strong>
-                                                </span>
+                                                </small>
                                             @enderror
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>

@@ -22,7 +22,7 @@ use App\Http\Controllers\UserController;
 
 // frontend
 
-Route::get('/', [HomeController::class, 'index'])->name('home1');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
 Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
 Route::get('/books', [FrontendController::class, 'shop'])->name('books');
@@ -38,11 +38,8 @@ Route::get('/admin/senSorUser', [AdminController::class, 'showAdminLoginForm'])-
 Route::post('/admin/senSorUser', [AdminController::class, 'postAdminLogin'])->name('admin.login.post'); 
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 //user
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','user'])->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
     });
