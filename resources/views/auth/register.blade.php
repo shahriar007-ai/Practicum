@@ -30,53 +30,77 @@
 <body class="bg-gradient-light">
 
     <div class="container">
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-10 mx-auto">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                            </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-12 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user mb-3" id="exampleFirstName" placeholder="Username">
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-10 mx-auto">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Create Account</h1>
+                                    </div>
+                                    <form class="user" method="POST" action="{{route('register')}}">
+                                        @csrf
+                                        <div class="form-group row">
+                                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                                <input type="text" required=""  value="{{old('name')}}" name="name" class="form-control @error('name') is-invalid @enderror form-control-user mb-3" id="exampleFirstName" placeholder="Username">
+                                                @error('name')
+                                                    <small class="text-danger text-center ml-3" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                                <input type="email" required="" value="{{old('email')}}" name="email" class="form-control @error('email') is-invalid @enderror form-control-user mb-3" id="exampleInputEmail" placeholder="Email Address">
+                                                @error('email')
+                                                    <small class="text-danger text-center ml-3" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </small>
+                                                @enderror
+                                            </div>    
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12 mb-3">
+                                                <input type="password" required="" name="password" class="form-control @error('password') is-invalid @enderror form-control-user"
+                                                    id="exampleInputPassword" placeholder="Password">
+                                                @error('password')
+                                                    <small class="text-danger text-center ml-3" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <div class="col-sm-12">
+                                                <input type="password" required="" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror form-control-user mb-3"
+                                                    id="exampleRepeatPassword" placeholder="Repeat Password">
+                                                @error('password_confirmation')
+                                                    <small class="text-danger text-center ml-3" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Register Account
+                                        </button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12 mb-3 mb-sm-0">
-                                        <input type="email" class="form-control form-control-user mb-3" id="exampleInputEmail" placeholder="Email Address">
-                                    </div>    
-                                </div>
-                                <div class="form-group row mb-3">
-                                    <div class="col-sm-12 mb-3">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
-                                    </div>
-                                   
-                                </div>
-                                <div class="form-group row mb-3">
-                                   
-                                    <div class="col-sm-12">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
-                                    </div>
-                                </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
-        </div> 
+        </div>
+        
     </div>
     <script src="{{asset('admin_assets/adminvendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('admin_assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
