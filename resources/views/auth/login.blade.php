@@ -72,6 +72,13 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                     </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="{{route('password.request')}}">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="{{route('register')}}">Need an account? Register!</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

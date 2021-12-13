@@ -10,7 +10,11 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
     public function showAdminLoginForm(){
-       return view('admin.auth.login');
+       if(!auth()->check()){
+            return view('admin.auth.login'); 
+       }else{
+           return redirect('/admin/dashboard');
+       }
     }
     public function postAdminLogin(Request $request){
         $request->validate([
