@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +32,12 @@ Route::get('/book/details', [FrontendController::class, 'productDetails'])->name
 Route::middleware(['admin'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::prefix('products')->group(function () {
+            Route::prefix('category')->group(function () {
+                Route::get('/all', [CategoryController::class, 'index'])->name('category.all');
+                Route::get('/add', [CategoryController::class, 'addCategory'])->name('category.add');
+            });
+        });        
     });
 });
 Route::get('/admin/senSorUser', [AdminController::class, 'showAdminLoginForm'])->name('show.admin.login'); 
