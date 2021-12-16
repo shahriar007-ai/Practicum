@@ -88,11 +88,10 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block mb-2">
                                             Register Account
                                         </button>
                                     </form>
-                                    <hr>
                                     <div class="text-center">
                                         <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
                                     </div>
