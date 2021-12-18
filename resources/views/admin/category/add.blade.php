@@ -74,7 +74,7 @@
                             @foreach($all_category as $category)
                                 <tr>
                                     <td>{{$count++}}</td>
-                                    <td><img src="{{asset('uploads/category/images/'.$category->img)}}" class="rounded" alt="" width="80"></td>
+                                    <td><img src="{{asset('uploads/category/images/'.$category->img)}}" class="rounded" alt="" height="50" width="50"></td>
                                     <td>{{$category->title}}</td>
                                     <td>{{$category->slug}}</td>
                                     <td><a href=""><i style="color:green;font-size:14px;" class="fas fa-edit"></i></a>&nbsp;&nbsp;<a href=""><i style="color:red;font-size:14px;" class="fas fa-trash"></i></a></td>
