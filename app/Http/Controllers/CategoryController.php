@@ -14,4 +14,12 @@ class CategoryController extends Controller
     {
         return view('admin.category.add');
     }
+    public function  storeCategory(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|email:rfc,dns',
+            'password' => 'required|string',
+        ]);
+
+    }
 }

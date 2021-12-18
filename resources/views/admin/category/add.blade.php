@@ -16,19 +16,29 @@
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
-					<form class="forms-sample" action="" method="post" enctype="multipart/form-data">
+					<form class="forms-sample" action="{{route('category.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Category Title <span class="required-icon">*</span></label>
-                            <input type="text" class="form-control" name="book_name" id="book_name" placeholder="Enter Title">
+                            <label for="name">Category Title <span class="text-danger">*</span></label>
+                            <input type="text" required="" class="form-control @error('title') is-invalid @enderror" name="title" id="" placeholder="Enter Title" value="{{old('title')}}">
+                            @error('title')
+                                <small class="text-danger text-center ml-3" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </small>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="description">Short Description</label>
-                            <textarea class="form-control ckeditor" name="description" id="description" rows="2"></textarea>
+                            <textarea class="form-control" name="description" id="description" rows="2">{{old('description')}}</textarea>
+                            @error('description')
+                                <small class="text-danger text-center ml-3" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </small>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="cat_img">Category Image <span class="text-danger">*</span></label> <br>
-                            <input type="file" name="cat_img" class="dropify">
+                            <input type="file" name="cat_img" class="form-control">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-sm btn-success mr-2 mt-2">Add Category</button>

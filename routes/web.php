@@ -36,6 +36,7 @@ Route::middleware(['admin'])->group(function () {
             Route::prefix('category')->group(function () {
                 Route::get('/all', [CategoryController::class, 'index'])->name('category.all');
                 Route::get('/add', [CategoryController::class, 'addCategory'])->name('category.add');
+                Route::post('/store', [CategoryController::class, 'storeCategory'])->name('category.store');
             });
         });        
     });
