@@ -6,7 +6,7 @@
 					<div class="footer__widget footer__menu">
 						<div class="ft__logo">
 							<a href="{{route('home')}}">
-								<img src="{{asset('assets/images/logo/3.png')}}" alt="logo">
+								<img src="{{asset('assets/images/logo/logo.png')}}" alt="logo">
 							</a>
 							<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered duskam alteration variations of passages</p>
 						</div>
@@ -35,7 +35,7 @@
 				<div class="col-lg-6 col-md-6 col-sm-12">
 					<div class="copyright">
 						<div class="copy__right__inner text-left">
-							<p>Copyright <i class="fa fa-copyright"></i> <a href="">Free themes Cloud.</a> All Rights Reserved</p>
+							<p>Copyright <i class="fa fa-copyright"></i> <a href="">Bookshelf.</a> All Rights Reserved</p>
 						</div>
 					</div>
 				</div>

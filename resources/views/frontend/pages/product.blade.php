@@ -226,7 +226,7 @@
                 </div>
                 <div class="wn__related__product pt--80 pb--50">
                     <div class="section__title text-center">
-                        <h2 class="title__be--2">Related Products</h2>
+                        <h2 class="title__be--2">Related Books</h2>
                     </div>
                     <div class="row mt--60">
                         <div class="productcategory__slide--2 arrows_style owl-carousel owl-theme">
@@ -459,7 +459,7 @@
             <div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
                 <div class="shop__sidebar">
                     <aside class="wedget__categories poroduct--cat">
-                        <h3 class="wedget__title">Product Categories</h3>
+                        <h3 class="wedget__title">Book Categories</h3>
                         <ul>
                             <li><a href="#">Biography <span>(3)</span></a></li>
                             <li><a href="#">Business <span>(4)</span></a></li>
@@ -480,7 +480,7 @@
                         </ul>
                     </aside>
                     <aside class="wedget__categories poroduct--tag">
-                        <h3 class="wedget__title">Product Tags</h3>
+                        <h3 class="wedget__title">Book Tags</h3>
                         <ul>
                             <li><a href="#">Biography</a></li>
                             <li><a href="#">Business</a></li>

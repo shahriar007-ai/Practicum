@@ -7,6 +7,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +37,23 @@ Route::middleware(['admin'])->group(function () {
             Route::prefix('category')->group(function () {
                 Route::get('/add', [CategoryController::class, 'addCategory'])->name('category.add');
                 Route::post('/store', [CategoryController::class, 'storeCategory'])->name('category.store');
+                Route::get('/edit/{category:slug}', [CategoryController::class, 'editCategory'])->name('category.edit');
+                Route::post('/update/{id}', [CategoryController::class, 'updateCategory'])->name('category.update');
+                Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
+            });
+            Route::prefix('subcategory')->group(function () {
+                Route::get('/add', [CategoryController::class, 'addSubCategory'])->name('subcategory.add');
+                Route::post('/store', [CategoryController::class, 'storeSubCategory'])->name('subcategory.store');
+                Route::get('/edit/{subcategory:slug}', [CategoryController::class, 'editSubCategory'])->name('subcategory.edit');
+                Route::post('/update/{id}', [CategoryController::class, 'updateSubCategory'])->name('subcategory.update');
+                Route::get('/delete/{id}', [CategoryController::class, 'deleteSubCategory'])->name('subcategory.delete');
+            });
+            Route::prefix('tags')->group(function () {
+                Route::get('/add', [TagController::class, 'addTag'])->name('tag.add');
+                Route::post('/store', [TagController::class, 'storeTag'])->name('tag.store');
+                Route::get('/edit/{tag:slug}', [TagController::class, 'editTag'])->name('tag.edit');
+                Route::post('/update/{id}', [TagController::class, 'updateTag'])->name('tag.update');
+                Route::get('/delete/{id}', [TagController::class, 'deleteTag'])->name('tag.delete');
             });
         });        
     });

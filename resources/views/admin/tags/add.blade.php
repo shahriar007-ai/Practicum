@@ -27,14 +27,14 @@
 			<div class="card shadow mb-4">
 				<!-- Card Header - Dropdown -->
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold custom-header-color">Add Category</h6>
+					<h6 class="m-0 font-weight-bold custom-header-color">Add Tag</h6>
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
-					<form class="forms-sample" action="{{route('category.store')}}" method="post" enctype="multipart/form-data">
+					<form class="forms-sample" action="{{route('tag.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Category Title <span class="text-danger">*</span></label>
+                            <label for="name">Tag Title <span class="text-danger">*</span></label>
                             <input type="text" required="" class="form-control @error('title') is-invalid @enderror" name="title" id="" placeholder="Enter Title" value="{{old('title')}}">
                             @error('title')
                                 <small class="text-danger text-center ml-3" role="alert">
@@ -43,25 +43,16 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="description">Short Description</label>
-                            <textarea class="form-control" name="short_desc" id="description" rows="2">{{old('short_desc')}}</textarea>
-                            @error('short_desc')
+                            <label for="cat_img">Tag Image</label> <br>
+                            <input type="file" name="tag_img" class="">
+                            @error('tag_img')
                                 <small class="text-danger text-center ml-3" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="cat_img">Category Image</label> <br>
-                            <input type="file" name="cat_img" class="">
-                            @error('cat_img')
-                                <small class="text-danger text-center ml-3" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-success mr-2 mt-2">Add Category</button>
+                            <button type="submit" class="btn btn-sm btn-success mr-2 mt-2">Add Tag</button>
                             <a href="/admin/dashboard" class="btn btn-sm btn-secondary mt-2">Cancel</a>
                         </div>
                     </form>
@@ -71,7 +62,7 @@
 		<div class="col-xl-6 col-lg-6">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold custom-header-color">All Category</h6>
+                    <h6 class="m-0 font-weight-bold custom-header-color">All Tags</h6>
                 </div>
                 <div class="card-body">
                     <table class="table">
@@ -80,28 +71,26 @@
                                 <th class="border-top-0">SL</th>
                                 <th scope="col" class="border-top-0">Image</th>
                                 <th scope="col" class="border-top-0">Title</th>
-                                <th scope="col" class="border-top-0">Slug</th>
                                 <th scope="col" class="border-top-0">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $count=1;?>
-                            @forelse($parent_category as $category)
+                            @forelse($tags as $tag)
                                 <tr>
                                     <td>{{$count++}}</td>
-                                    <td>@if(!empty($category->img))
-                                            <img src="{{asset('uploads/category/images/'.$category->img)}}" class="rounded" alt="" height="50" width="50"></td>
+                                    <td>@if(!empty($tag->img))
+                                            <img src="{{asset('uploads/tags/images/'.$tag->img)}}" class="rounded" alt="" height="50" width="50"></td>
                                         @else
                                             <img src="{{asset('admin_assets/img/no-img.png')}}" class="rounded" alt="Default image" height="50" width="50"></td>
                                         @endif
-                                    <td>{{$category->title}}</td>
-                                    <td>{{$category->slug}}</td>
-                                    <td><a href="{{route('category.edit',$category->slug)}}"><i style="color:green;font-size:14px;" class="fas fa-edit"></i></a>&nbsp;&nbsp;
-                                    <a href="{{route('category.delete',$category->id)}}" onclick="return confirm('Do you really want to delete this category?');"><i style="color:red;font-size:14px;" class="fas fa-trash-alt"></i></a></td>
+                                    <td>{{$tag->title}}</td>
+                                    <td><a href="{{route('tag.edit',$tag->slug)}}"><i style="color:green;font-size:14px;" class="fas fa-edit"></i></a>&nbsp;&nbsp;
+                                    <a href="{{route('tag.delete',$tag->id)}}" onclick="return confirm('Do you really want to delete this tag?');"><i style="color:red;font-size:14px;" class="fas fa-trash-alt"></i></a></td>
                                 </tr> 
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">No Category Found.</td>
+                                    <td colspan="5" class="text-center">No Tags Found.</td>
                                 </tr> 
                             @endforelse 
                         </tbody>

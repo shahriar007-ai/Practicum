@@ -22,24 +22,22 @@
 	<hr class="sidebar-divider">
 
 	<!-- Heading -->
-	<div class="sidebar-heading">
-		Catalogue
-	</div>
 
 	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item">
 		<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
 			aria-expanded="true" aria-controls="collapseTwo">
 			<i class="fas fa-list"></i>
-			<span>Category</span>
+			<span>Catalogue</span>
 		</a>
 		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<a class="collapse-item" href="{{route('category.add')}}">Add Category</a>
+				<a class="collapse-item" href="{{route('category.add')}}">Category</a>
+				<a class="collapse-item" href="{{route('subcategory.add')}}">SubCategory</a>
+				<a class="collapse-item" href="{{route('tag.add')}}">Tags</a>
 			</div>
 		</div>
 	</li>
-
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item">
 		<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

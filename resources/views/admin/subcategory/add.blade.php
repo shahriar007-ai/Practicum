@@ -27,16 +27,30 @@
 			<div class="card shadow mb-4">
 				<!-- Card Header - Dropdown -->
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold custom-header-color">Add Category</h6>
+					<h6 class="m-0 font-weight-bold custom-header-color">Add SubCategory</h6>
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
-					<form class="forms-sample" action="{{route('category.store')}}" method="post" enctype="multipart/form-data">
+					<form class="forms-sample" action="{{route('subcategory.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name">Category Title <span class="text-danger">*</span></label>
                             <input type="text" required="" class="form-control @error('title') is-invalid @enderror" name="title" id="" placeholder="Enter Title" value="{{old('title')}}">
                             @error('title')
+                                <small class="text-danger text-center ml-3" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Parent Category <span class="text-danger">*</span></label>
+                            <select required="" class="form-control parent_category @error('parent_category') is-invalid @enderror" name="parent_category" id="parent_category">
+                                <option value="">None</option>
+                                @foreach($parent_category as $cat)
+                                    <option value="{{$cat->id}}"><span class="boldCat">{{$cat->title}}</span></option>
+                                @endforeach
+                            </select>
+                            @error('parent_category')
                                 <small class="text-danger text-center ml-3" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </small>
@@ -61,7 +75,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-success mr-2 mt-2">Add Category</button>
+                            <button type="submit" class="btn btn-sm btn-success mr-2 mt-2">Add SubCategory</button>
                             <a href="/admin/dashboard" class="btn btn-sm btn-secondary mt-2">Cancel</a>
                         </div>
                     </form>
@@ -71,33 +85,33 @@
 		<div class="col-xl-6 col-lg-6">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold custom-header-color">All Category</h6>
+                    <h6 class="m-0 font-weight-bold custom-header-color">All SubCategory</h6>
                 </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th class="border-top-0">SL</th>
-                                <th scope="col" class="border-top-0">Image</th>
-                                <th scope="col" class="border-top-0">Title</th>
-                                <th scope="col" class="border-top-0">Slug</th>
+                                <th scope="col" class="border-top-0">Image</th>   
+                                <th scope="col" class="border-top-0">Parent Category</th>
+                                <th scope="col" class="border-top-0">Category</th>
                                 <th scope="col" class="border-top-0">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $count=1;?>
-                            @forelse($parent_category as $category)
+                            @forelse($sub_category as $category)
                                 <tr>
                                     <td>{{$count++}}</td>
                                     <td>@if(!empty($category->img))
-                                            <img src="{{asset('uploads/category/images/'.$category->img)}}" class="rounded" alt="" height="50" width="50"></td>
+                                            <img src="{{asset('uploads/subcategory/images/'.$category->img)}}" class="rounded" alt="" height="50" width="50"></td>
                                         @else
                                             <img src="{{asset('admin_assets/img/no-img.png')}}" class="rounded" alt="Default image" height="50" width="50"></td>
                                         @endif
+                                    <td>@if(!empty($category->parent->title)){{$category->parent->title}}@endif</td>
                                     <td>{{$category->title}}</td>
-                                    <td>{{$category->slug}}</td>
-                                    <td><a href="{{route('category.edit',$category->slug)}}"><i style="color:green;font-size:14px;" class="fas fa-edit"></i></a>&nbsp;&nbsp;
-                                    <a href="{{route('category.delete',$category->id)}}" onclick="return confirm('Do you really want to delete this category?');"><i style="color:red;font-size:14px;" class="fas fa-trash-alt"></i></a></td>
+                                    <td><a href="{{route('subcategory.edit',$category->slug)}}"><i style="color:green;font-size:14px;" class="fas fa-edit"></i></a>&nbsp;&nbsp;
+                                    <a href="{{route('subcategory.delete',$category->id)}}" onclick="return confirm('Do you really want to delete this subcategory?');"><i style="color:red;font-size:14px;" class="fas fa-trash-alt"></i></a></td>
                                 </tr> 
                             @empty
                                 <tr>
