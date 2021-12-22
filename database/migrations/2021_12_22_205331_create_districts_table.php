@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagsTable extends Migration
+class CreateDistrictsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('slug');
-            $table->string('img')->nullable();
-            $table->tinyInteger('status')->default(1)->comment('Active=1, Inactive=0');;
+        Schema::create('districts', function (Blueprint $table) {
+            $table->string('name');
+            $table->unsignedBigInteger('division_id');
+            $table->tinyInteger('status')->default(1)->comment('Active=1, Inactive=0');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('districts');
     }
 }

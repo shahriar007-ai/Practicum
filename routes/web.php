@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\CouponController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,7 +56,15 @@ Route::middleware(['admin'])->group(function () {
                 Route::post('/update/{id}', [TagController::class, 'updateTag'])->name('tag.update');
                 Route::get('/delete/{id}', [TagController::class, 'deleteTag'])->name('tag.delete');
             });
-        });        
+        });
+        Route::prefix('coupons')->group(function () {
+            Route::get('/list', [CouponController::class, 'index'])->name('coupon.list');
+            Route::get('/add', [CouponController::class, 'addCoupon'])->name('coupon.add');
+            Route::post('/store', [CouponController::class, 'storeCoupon'])->name('coupon.store');
+            Route::get('/edit/{coupon:slug}', [CouponController::class, 'editCoupon'])->name('coupon.edit');
+            Route::post('/update/{id}', [CouponController::class, 'updateCoupon'])->name('coupon.update');
+            Route::get('/delete/{id}', [CouponController::class, 'deleteCoupon'])->name('coupon.delete');
+        });    
     });
 });
 Route::get('/admin/senSorUser', [AdminController::class, 'showAdminLoginForm'])->name('show.admin.login'); 

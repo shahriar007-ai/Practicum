@@ -19,8 +19,8 @@
 								<li><a href="#"><i class="bi bi-youtube"></i></a></li>
 							</ul>
 							<ul class="mainmenu d-flex justify-content-center">
-								<li><a href="">Best Seller</a></li>
-								<li><a href="">All Product</a></li>
+								<li><a href="#best-seller">Best Seller</a></li>
+								<li><a href="#new-books">New Books</a></li>
 								<li><a href="{{route('home')}}">Contact</a></li>
 							</ul>
 						</div>
@@ -32,16 +32,20 @@
 	<div class="copyright__wrapper">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<div class="copyright">
-						<div class="copy__right__inner text-left">
-							<p>Copyright <i class="fa fa-copyright"></i> <a href="">Bookshelf.</a> All Rights Reserved</p>
-						</div>
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="payment text-center">
+						<img src="{{asset('assets/images/icons/payment.png')}}" alt="" />
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<div class="payment text-right">
-						<img src="{{asset('assets/images/icons/payment.png')}}" alt="" />
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="copyright">
+					<div class="copy__right__inner text-center">
+						<p>Copyright <i class="fa fa-copyright"></i> <a href="">Bookshelf.</a> All Rights Reserved</p>
 					</div>
 				</div>
 			</div>

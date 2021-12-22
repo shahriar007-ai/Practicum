@@ -20,7 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->text('short_desc')->nullable();
             $table->integer('parent_id')->default(0);
             $table->string('img')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('status')->default(1)->comment('Active=1, Inactive=0');;
             $table->timestamps();
         });
     }
