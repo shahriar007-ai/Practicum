@@ -59,7 +59,7 @@
                                         @endif
                                     </td>
                                     <td><a href="{{route('shipping.edit',$shipping->id)}}"><i style="color:green;font-size:14px;" class="fas fa-edit"></i></a>&nbsp;&nbsp;
-                                    <a href="{{route('shipping.delete',$shipping->id)}}" onclick="return confirm('Do you really want to delete this shipping?');"><i style="color:red;font-size:14px;" class="fas fa-trash-alt"></i></a></td>
+                                    <a href="{{route('shipping.delete',$shipping->id)}}" onclick="return confirm('Do you really want to delete this shipping method?');"><i style="color:red;font-size:14px;" class="fas fa-trash-alt"></i></a></td>
                                 </tr> 
                             @empty
                                 <tr>
