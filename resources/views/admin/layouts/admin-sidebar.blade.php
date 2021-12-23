@@ -2,8 +2,8 @@
 
 	<!-- Sidebar - Brand -->
 	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.dashboard')}}">
-		<div class="sidebar-brand-icon rotate-n-15">
-			<i class="fas fa-laugh-wink"></i>
+		<div class="sidebar-brand-icon">
+			<img src="{{asset('admin_assets/img/logo-dashboard.png')}}" alt="logo" width="30">
 		</div>
 		<div class="sidebar-brand-text mx-3">Bookshelf</div>
 	</a>
@@ -66,6 +66,22 @@
 			<div class="bg-white py-2 collapse-inner rounded">
 				<!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
 				<a class="collapse-item" href="{{route('shipping.list')}}">All Shipping</a>
+			</div>
+		</div>
+	</li>
+
+	<li class="nav-item">
+		<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#payment"
+			aria-expanded="true" aria-controls="collapseUtilities">
+			<i class="fas fa-dollar-sign"></i>
+			<span>Payment</span>
+		</a>
+		<div id="payment" class="collapse" aria-labelledby="headingUtilities"
+			data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
+				<a class="collapse-item" href="{{route('cash-on-delivery')}}">Cash On Delivery</a>
+				<a class="collapse-item" href="{{route('ssl-commerz')}}">SSL COMMERZ</a>
 			</div>
 		</div>
 	</li>

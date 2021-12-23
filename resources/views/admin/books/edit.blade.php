@@ -63,6 +63,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="title">Author Name</label>
+                            <input type="text" class="form-control @error('author_name') is-invalid @enderror" name="author_name" id="author_name" placeholder="Enter author name" value="{{ $book->author_name ?? old('author_name')}}" maxlength="100">
+                            @error('author_name')
+                            <span class="text-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="title">Regular Price <span class="text-danger">*</span></label>
                             <input type="number" class="form-control @error('regular_price') is-invalid @enderror" name="regular_price" id="regular_price" placeholder="Enter regular price" min="1" maxlength="6" value="{{ $book->regular_price ?? old('regular_price')}}"  required>
                             @error('regular_price')

@@ -34,8 +34,9 @@
                         <thead>
                             <tr>
                                 <th class="border-top-0">SL</th>
-                                <th scope="col" class="border-top-0"> Title</th>
                                 <th scope="col" class="border-top-0">Image</th>
+                                <th scope="col" class="border-top-0"> Title</th>
+                                <th scope="col" class="border-top-0">Author</th>
                                 <th scope="col" class="border-top-0">Sku</th>
                                 <th scope="col" class="border-top-0">Regular Price</th>
                                 <th scope="col" class="border-top-0">Sale price</th>
@@ -47,13 +48,14 @@
                             @forelse($books as $book)
                                 <tr>
                                     <td>{{$count++}}</td>
-                                    <td>{{$book->title}}</td>
                                     <td>@if(!empty($book->featured_img))
                                             <img src="{{asset('uploads/books/images/'.$book->featured_img)}}" class="rounded" alt="" height="50" width="50">
                                         @else
                                             <img src="{{asset('admin_assets/img/no-img.png')}}" class="rounded" alt="Default image" height="50" width="50">
                                         @endif
                                     </td>
+                                    <td>{{$book->title}}</td>
+                                    <td>{{$book->author_name}}</td>
                                     <td>{{$book->sku}}</td>
                                     <td>{{$book->regular_price}}</td>
                                     <td>{{$book->sale_price}}</td>

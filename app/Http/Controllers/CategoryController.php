@@ -11,7 +11,7 @@ class CategoryController extends Controller
     
     public function addCategory()
     {
-        $parent_category=Category::where('status',1)->where('parent_id',0)->paginate(10);
+        $parent_category=Category::where('status',1)->where('parent_id',0)->orderBy('id','desc')->paginate(10);
         return view('admin.category.add',compact('parent_category'));
     }
     public function  storeCategory(Request $request)
@@ -72,7 +72,7 @@ class CategoryController extends Controller
     }
     public function addSubCategory()
     {   
-        $sub_category=Category::where('status',1)->with('parent')->where('parent_id','!=',0)->paginate(10);
+        $sub_category=Category::where('status',1)->with('parent')->where('parent_id','!=',0)->orderBy('id','desc')->paginate(10);
         $parent_category=Category::where('status',1)->where('parent_id',0)->get();
         return view('admin.subcategory.add',compact('parent_category','sub_category'));
     }

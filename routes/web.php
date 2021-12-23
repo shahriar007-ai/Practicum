@@ -11,6 +11,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\PaymentMethodController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +31,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
 Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
 Route::get('/books', [FrontendController::class, 'shop'])->name('books');
-Route::get('/book/details', [FrontendController::class, 'productDetails'])->name('book_details');
+Route::get('/book/details/{book:slug}', [FrontendController::class, 'bookDetails'])->name('book.details');
 
 // admin
 Route::middleware(['admin'])->group(function () {
@@ -81,7 +82,13 @@ Route::middleware(['admin'])->group(function () {
             Route::get('/edit/{coupon:slug}', [ShippingController::class, 'editShipping'])->name('shipping.edit');
             Route::post('/update/{id}', [ShippingController::class, 'updateShipping'])->name('shipping.update');
             Route::get('/delete/{id}', [ShippingController::class, 'deleteShipping'])->name('shipping.delete');
-        });    
+        });
+        Route::prefix('payment')->group(function () {  
+			Route::get('/cash-on-delivery', [PaymentMethodController::class,'cashOnDelivery'])->name('cash-on-delivery');
+            Route::post('/cash-on-delivery/update', [PaymentMethodController::class,'cashUpdate'])->name('cash.update');
+            Route::get('/ssl-commerz', [PaymentMethodController::class,'sslCommerz'])->name('ssl-commerz');
+            Route::post('/ssl-commerz/update', [PaymentMethodController::class,'sslUpdate'])->name('ssl.update');
+        }); 
     });
 });
 Route::get('/admin/senSorUser', [AdminController::class, 'showAdminLoginForm'])->name('show.admin.login'); 

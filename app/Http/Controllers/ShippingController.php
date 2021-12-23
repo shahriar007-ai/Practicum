@@ -10,7 +10,7 @@ use DB;
 class ShippingController extends Controller
 {
     public function index(){
-        $shippings = ShippingMethod::paginate(10);
+        $shippings = ShippingMethod::orderBy('id','desc')->paginate(10);
         return view('admin.shipping.index',compact('shippings'));
     }
     public function addShipping(){

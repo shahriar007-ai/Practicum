@@ -13,7 +13,7 @@ class BookController extends Controller
 {
     public function index()
     {   
-        $books = Book::paginate(10);
+        $books = Book::where('status',1)->latest()->paginate(10);
         return view('admin.books.index',compact('books'));
     }
     public function addBook(){
@@ -28,6 +28,7 @@ class BookController extends Controller
             'sku' => 'required|string|max:100|unique:books,sku',
             'short_desc' => 'nullable|string|max:1000',
             'description' => 'nullable|string|max:4000',
+            'author_name' => 'nullable|string|max:100',
             'featured_img' => 'required|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
             'category.*'=>'required',
             'tags.*'=>'nullable',
@@ -50,6 +51,7 @@ class BookController extends Controller
         $book->sale_price =  $request->sale_price;
         $book->short_desc =  $request->short_desc;
         $book->description =  $request->description;
+        $book->author_name =  $request->author_name;
         $book->flash_title =  $request->flash_title;
         $image = $request->file('featured_img'); 
         if($image != '') {
@@ -92,6 +94,7 @@ class BookController extends Controller
             'sku' => 'required|string|max:100|unique:books,sku,'.$id,
             'short_desc' => 'nullable|string|max:1000',
             'description' => 'nullable|string|max:4000',
+            'author_name' => 'nullable|string|max:100',
             'featured_img' => 'nullable|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
             'category.*'=>'required',
             'tags.*'=>'nullable',
@@ -114,6 +117,7 @@ class BookController extends Controller
         $book->sale_price =  $request->sale_price;
         $book->short_desc =  $request->short_desc;
         $book->description =  $request->description;
+        $book->author_name =  $request->author_name;
         $book->flash_title =  $request->flash_title;
         
         $image_name = $request->hidden_image;

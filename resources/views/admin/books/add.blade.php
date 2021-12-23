@@ -54,6 +54,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="title">Author Name</label>
+                            <input type="text" class="form-control @error('author_name') is-invalid @enderror" name="author_name" id="author_name" placeholder="Enter author name" value="{{old('author_name')}}" maxlength="100">
+                            @error('author_name')
+                            <span class="text-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="description">Description</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="6" id="description" placeholder="Enter book description" maxlength="4000">{{old('description')}}</textarea>
                             @error('description')

@@ -170,7 +170,9 @@ h6 {
 address {
   font-style: italic;
   margin: 0 0 24px; }
-
+  .bc-custom{
+    background-color: #d3d3d7;
+  }
 abbr[title] {
   border-bottom: 1px dotted; }
 
@@ -634,27 +636,32 @@ a {
   background-size: cover;
   background-position: center center; }
 .bg-image--2 {
-  background-image: url(/assets/images/bg/2.jpg);
+  background-image: url(/assets/images/bg/.jpg);
+  background-color: rgb(240, 235, 235);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center; }
 .bg-image--3 {
-  background-image: url(/assets/images/bg/3.jpg);
+  background-image: url(/assets/images/bg/.jpg);
+  background-color: rgb(240, 235, 235);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center; }
 .bg-image--4 {
-  background-image: url(/assets/images/bg/4.jpg);
+  background-image: url(/assets/images/bg/.jpg);
+  background-color: rgb(240, 235, 235);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center; }
 .bg-image--5 {
-  background-image: url(/assets/images/bg/5.jpg);
+  background-image: url(/assets/images/bg/.jpg);
+  background-color: rgb(240, 235, 235);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center; }
 .bg-image--6 {
-  background-image: url(/assets/images/bg/6.jpg);
+  background-image: url(/assets/images/bg/.jpg);
+  background-color: rgb(240, 235, 235);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center; }
@@ -3946,8 +3953,8 @@ h3.widget-title-modal {
   Breadcaump Styles
 ----------------------------*/
 .ht__bradcaump__area {
-  padding-bottom: 110px;
-  padding-top: 220px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 .bradcaump__inner .bradcaump-title {
   font-size: 24px;
@@ -4010,7 +4017,7 @@ h3.widget-title-modal {
     .product__info__main .product-reviews-summary .reviews-actions a:hover {
       color: #e59285; }
 .product__info__main .price-box {
-  margin: 15px 0 20px;
+  margin: 5px 0 10px;
 }
 .product__info__main .price-box span {
   color: #333;
@@ -4040,7 +4047,7 @@ h3.widget-title-modal {
     text-overflow: ellipsis; }
 .product__info__main .box-tocart {
   margin: 0;
-  margin-bottom:25px;}
+  margin-bottom:10px;}
   .product__info__main .box-tocart span {
     display: inline-block;
     font-size: 14px;
@@ -4125,7 +4132,7 @@ h3.widget-title-modal {
   clear: both;
   line-height: 24px;
   margin: 20px 0 0;
-  padding: 30px 0; }
+  padding: 10px 0; }
  .product__info__main .product__overview p {
   color: #333;
   font-size: 14px;

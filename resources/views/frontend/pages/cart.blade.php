@@ -1,25 +1,33 @@
 @extends('frontend.layouts.master')
 @section('content')
-<div class="ht__bradcaump__area bg-image--3">
+<div class="ht__bradcaump__area bg-image--6">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="bradcaump__inner text-center">
-					<h2 class="bradcaump-title">Shopping Cart</h2>
+					<h2 class="bradcaump-title"></h2>
 					<nav class="bradcaump-content">
-					<a class="breadcrumb_item" href="{{route('home')}}">Home</a>
-					<span class="brd-separetor">/</span>
-					<span class="breadcrumb_item active">Shopping Cart</span>
+						<a class="breadcrumb_item" href=""></a>
+						<span class="brd-separetor"></span>
+						<span class="breadcrumb_item active"></span>
 					</nav>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-        <!-- End Bradcaump area -->
-        <!-- cart-main-area start -->
-<div class="cart-main-area section-padding--lg bg--white">
+<div class="cart-main-area mt-4 bg--white">
 	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 mx-auto">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb bc-custom">
+						<li class="breadcrumb-item "><a class="text-white" href="/">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page"><a class="text-white" href="#">Cart</a></li>
+					</ol>
+				</nav>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-12 col-sm-12 ol-lg-12">
 				<form action="#">               
