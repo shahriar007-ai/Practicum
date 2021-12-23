@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\BookController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +35,14 @@ Route::get('/book/details', [FrontendController::class, 'productDetails'])->name
 Route::middleware(['admin'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-        Route::prefix('products')->group(function () {
+        Route::prefix('books')->group(function () {
+            Route::get('/list', [BookController::class, 'index'])->name('book.list');
+            Route::get('/add', [BookController::class, 'addBook'])->name('book.add');
+            Route::post('/store', [BookController::class, 'storeBook'])->name('book.store');
+            Route::get('/edit/{id}', [BookController::class, 'editBook'])->name('book.edit');
+            Route::post('/update/{id}', [BookController::class, 'updateBook'])->name('book.update');
+            Route::get('/delete/{id}', [BookController::class, 'deleteBook'])->name('book.delete');
+
             Route::prefix('category')->group(function () {
                 Route::get('/add', [CategoryController::class, 'addCategory'])->name('category.add');
                 Route::post('/store', [CategoryController::class, 'storeCategory'])->name('category.store');
@@ -64,6 +72,14 @@ Route::middleware(['admin'])->group(function () {
             Route::get('/edit/{coupon:slug}', [CouponController::class, 'editCoupon'])->name('coupon.edit');
             Route::post('/update/{id}', [CouponController::class, 'updateCoupon'])->name('coupon.update');
             Route::get('/delete/{id}', [CouponController::class, 'deleteCoupon'])->name('coupon.delete');
+        }); 
+        Route::prefix('shipping')->group(function () {
+            Route::get('/list', [ShippingController::class, 'index'])->name('shipping.list');
+            Route::get('/add', [ShippingController::class, 'addShipping'])->name('shipping.add');
+            Route::post('/store', [ShippingController::class, 'storeShipping'])->name('shipping.store');
+            Route::get('/edit/{coupon:slug}', [ShippingController::class, 'editShipping'])->name('shipping.edit');
+            Route::post('/update/{id}', [ShippingController::class, 'updateShipping'])->name('shipping.update');
+            Route::get('/delete/{id}', [ShippingController::class, 'deleteShipping'])->name('shipping.delete');
         });    
     });
 });

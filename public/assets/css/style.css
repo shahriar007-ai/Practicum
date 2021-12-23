@@ -2494,8 +2494,8 @@ nav.menu {
             color:#fff;
               background-color: #ce7852; }
 			  .product:hover .product__content h4,.product:hover .product__content ul.prize {
-			  opacity:0;
-			  visibility:hidden;
+			  opacity:1;
+			  visibility:visible;
 			  transition: all 0.2s ease 0s;
 			}
 			

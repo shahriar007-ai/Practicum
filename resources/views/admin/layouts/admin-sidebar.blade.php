@@ -35,6 +35,7 @@
 				<a class="collapse-item" href="{{route('category.add')}}">Category</a>
 				<a class="collapse-item" href="{{route('subcategory.add')}}">SubCategory</a>
 				<a class="collapse-item" href="{{route('tag.add')}}">Tags</a>
+				<a class="collapse-item" href="{{route('book.list')}}">Books</a>
 			</div>
 		</div>
 	</li>
@@ -48,7 +49,7 @@
 		<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
 			data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<h6 class="collapse-header">Custom Utilities:</h6>
+				<!-- <h6 class="collapse-header">Custom Utilities:</h6> -->
 				<a class="collapse-item" href="{{route('coupon.list')}}">All Coupons</a>
 			</div>
 		</div>

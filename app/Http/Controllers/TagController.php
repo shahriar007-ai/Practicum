@@ -10,7 +10,7 @@ class TagController extends Controller
 {
     public function addTag()
     {   
-        $tags=Tag::where('status',1)->get();
+        $tags=Tag::where('status',1)->paginate(10);
         return view('admin.tags.add',compact('tags'));
     }
     public function storeTag(Request $request)

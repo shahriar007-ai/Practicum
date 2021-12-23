@@ -53,7 +53,7 @@
                         </div>
                         <div class="form-group">
                             <label for="cat_img">Category Image</label> <br>
-                            <input type="file" name="cat_img" class="">
+                            <input type="file" name="cat_img" class=""><br>
                             @error('cat_img')
                                 <small class="text-danger text-center ml-3" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -90,10 +90,11 @@
                                 <tr>
                                     <td>{{$count++}}</td>
                                     <td>@if(!empty($category->img))
-                                            <img src="{{asset('uploads/category/images/'.$category->img)}}" class="rounded" alt="" height="50" width="50"></td>
+                                            <img src="{{asset('uploads/category/images/'.$category->img)}}" class="rounded" alt="" height="50" width="50">
                                         @else
-                                            <img src="{{asset('admin_assets/img/no-img.png')}}" class="rounded" alt="Default image" height="50" width="50"></td>
+                                            <img src="{{asset('admin_assets/img/no-img.png')}}" class="rounded" alt="Default image" height="50" width="50">
                                         @endif
+                                    </td>
                                     <td>{{$category->title}}</td>
                                     <td>{{$category->slug}}</td>
                                     <td><a href="{{route('category.edit',$category->slug)}}"><i style="color:green;font-size:14px;" class="fas fa-edit"></i></a>&nbsp;&nbsp;
@@ -106,6 +107,9 @@
                             @endforelse 
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center">
+                        {!! $parent_category->links() !!}
+                    </div>
                 </div>
             </div>
         </div>

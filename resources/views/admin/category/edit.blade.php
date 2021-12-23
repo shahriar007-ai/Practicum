@@ -47,7 +47,7 @@
                             </label>
                              <br>
                             <input type="hidden" value="{{$category->img}}" name="old_img">
-                            <input type="file" name="cat_img">
+                            <input type="file" name="cat_img"><br>
                             @error('cat_img')
                                 <small class="text-danger text-center ml-3" role="alert">
                                     <strong>{{ $message }}</strong>

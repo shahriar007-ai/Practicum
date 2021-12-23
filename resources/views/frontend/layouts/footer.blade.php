@@ -19,8 +19,8 @@
 								<li><a href="#"><i class="bi bi-youtube"></i></a></li>
 							</ul>
 							<ul class="mainmenu d-flex justify-content-center">
-								<li><a href="#best-seller">Best Seller</a></li>
-								<li><a href="#new-books">New Books</a></li>
+								<li><a href="/#best-seller">Best Seller</a></li>
+								<li><a href="/#new-books">New Books</a></li>
 								<li><a href="{{route('home')}}">Contact</a></li>
 							</ul>
 						</div>

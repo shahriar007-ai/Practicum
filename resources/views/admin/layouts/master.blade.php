@@ -18,6 +18,7 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('admin_assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin_assets/css/custom.css')}}" rel="stylesheet">
+    <link href="{{asset('admin_assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
 
 </head>
 
@@ -100,8 +101,18 @@
 
     <!-- Page level custom scripts -->
     <script src="{{asset('admin_assets/js/demo/chart-area-demo.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('admin_assets/js/demo/chart-pie-demo.js')}}"></script>
-
+    <script>
+        $('.cat_id').select2({
+            placeholder: 'Select Category',
+        });
+        $('.tags').select2({
+            placeholder: 'Select Tags',
+        });
+        $('.rel_product_id').select2({
+            placeholder: 'Select Related Books',
+        });
+    </script>
 </body>
-
 </html>
