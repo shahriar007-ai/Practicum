@@ -19,7 +19,7 @@
     <link href="{{asset('admin_assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin_assets/css/custom.css')}}" rel="stylesheet">
     <link href="{{asset('admin_assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
-
+    <link href="{{asset('admin_assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -99,6 +99,9 @@
     <!-- Page level plugins -->
     <script src="{{asset('admin_assets/vendor/chart.js/Chart.min.js')}}"></script>
 
+    <script src="{{asset('admin_assets/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin_assets/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
     <!-- Page level custom scripts -->
     <script src="{{asset('admin_assets/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('admin_assets/plugins/select2/js/select2.min.js')}}"></script>
@@ -112,6 +115,11 @@
         });
         $('.rel_product_id').select2({
             placeholder: 'Select Related Books',
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.datatable').DataTable();
         });
     </script>
 </body>

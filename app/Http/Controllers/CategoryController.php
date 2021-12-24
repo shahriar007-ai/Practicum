@@ -8,22 +8,25 @@ use Str;
 
 class CategoryController extends Controller
 {
-    
+    public function index(){
+        $parent_category=Category::where('status',1)->where('parent_id',0)->orderBy('id','desc')->get();
+        return view('admin.category.index',compact('parent_category'));
+    }
     public function addCategory()
     {
-        $parent_category=Category::where('status',1)->where('parent_id',0)->orderBy('id','desc')->paginate(10);
-        return view('admin.category.add',compact('parent_category'));
+        return view('admin.category.add');
     }
     public function  storeCategory(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:60|unique:categories,title',
+            'slug' => 'required|string|max:60|unique:categories,slug',
             'short_desc' => 'nullable|string|max:1000',
             'cat_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
         $category = new Category();
         $category->title = $request->title;
-        $category->slug = Str::slug($request->title,'-');
+        $category->slug = $request->slug;
         $category->short_desc = $request->short_desc;
         $image = $request->file('cat_img'); 
         if($image != '') {
@@ -34,22 +37,23 @@ class CategoryController extends Controller
             $category->img = $imagename;
         }
         $category->save();
-        return redirect()->route('category.add')->with('success','Category Added Successfully');
+        return redirect()->route('category.list')->with('success','Category Added Successfully');
     }
     public function editCategory(Category $category)
-    {
+    {   
         return view('admin.category.edit',compact('category'));
     }
     public function updateCategory(Request $request,$id)
     {
         $request->validate([
             'title' => 'required|string|max:60|unique:categories,title,'.$id,
+            'slug' => 'required|string|max:60|unique:categories,slug,'.$id,
             'short_desc' => 'nullable|string|max:1000',
             'cat_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
         $category = Category::findOrFail($id);
         $category->title = $request->title;
-        $category->slug = Str::slug($request->title,'-');
+        $category->slug = $request->slug;
         $category->short_desc = $request->short_desc;
         $image = $request->file('cat_img'); 
         if($image != '') {
@@ -62,31 +66,35 @@ class CategoryController extends Controller
             $category->img = $request->old_img;
         }
         $category->update();
-        return redirect()->route('category.add')->with('success','Category Updated Successfully');
+        return redirect()->route('category.list')->with('success','Category Updated Successfully');
     }
     public function deleteCategory($id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('category.add')->with('success','Category Deleted Successfully');
+        return redirect()->route('category.list')->with('success','Category Deleted Successfully');
+    }
+    public function subCatList(){
+        $sub_category=Category::where('status',1)->with('parent')->where('parent_id','!=',0)->orderBy('id','desc')->get();
+        return view('admin.subcategory.index',compact('sub_category'));
     }
     public function addSubCategory()
     {   
-        $sub_category=Category::where('status',1)->with('parent')->where('parent_id','!=',0)->orderBy('id','desc')->paginate(10);
         $parent_category=Category::where('status',1)->where('parent_id',0)->get();
-        return view('admin.subcategory.add',compact('parent_category','sub_category'));
+        return view('admin.subcategory.add',compact('parent_category'));
     }
     public function  storeSubCategory(Request $request)
     {
         $request->validate([
             'title' => 'required|string|max:60|unique:categories,title',
+            'slug' => 'required|string|max:60|unique:categories,slug',
             'parent_category' => 'required|integer',
             'short_desc' => 'nullable|string|max:1000',
             'cat_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
         $category = new Category();
         $category->title = $request->title;
-        $category->slug = Str::slug($request->title,'-');
+        $category->slug = $request->slug;
         $category->short_desc = $request->short_desc;
         $category->parent_id = $request->parent_category;
         $image = $request->file('cat_img'); 
@@ -98,7 +106,7 @@ class CategoryController extends Controller
             $category->img = $imagename;
         }
         $category->save();
-        return redirect()->route('subcategory.add')->with('success','SubCategory Added Successfully');
+        return redirect()->route('subcategory.list')->with('success','SubCategory Added Successfully');
     }
     public function editSubCategory(Category $subcategory)
     {
@@ -109,13 +117,14 @@ class CategoryController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:60|unique:categories,title,'.$id,
+            'slug' => 'required|string|max:60|unique:categories,slug,'.$id,
             'short_desc' => 'nullable|string|max:1000',
             'parent_category' => 'required|integer',
             'cat_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
         $category = Category::findOrFail($id);
         $category->title = $request->title;
-        $category->slug = Str::slug($request->title,'-');
+        $category->slug = $request->slug;
         $category->short_desc = $request->short_desc;
         $category->parent_id = $request->parent_category;
         $image = $request->file('cat_img'); 
@@ -129,12 +138,12 @@ class CategoryController extends Controller
             $category->img = $request->old_img;
         }
         $category->update();
-        return redirect()->route('subcategory.add')->with('success','SubCategory Updated Successfully');
+        return redirect()->route('subcategory.list')->with('success','SubCategory Updated Successfully');
     }
     public function deleteSubCategory($id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('subcategory.add')->with('success','SubCategory Deleted Successfully');
+        return redirect()->route('subcategory.list')->with('success','SubCategory Deleted Successfully');
     }
 }

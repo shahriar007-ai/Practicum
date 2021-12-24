@@ -32,8 +32,8 @@
 		</a>
 		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<a class="collapse-item" href="{{route('category.add')}}">Category</a>
-				<a class="collapse-item" href="{{route('subcategory.add')}}">SubCategory</a>
+				<a class="collapse-item" href="{{route('category.list')}}">Category</a>
+				<a class="collapse-item" href="{{route('subcategory.list')}}">SubCategory</a>
 				<a class="collapse-item" href="{{route('tag.add')}}">Tags</a>
 				<a class="collapse-item" href="{{route('book.list')}}">Books</a>
 			</div>

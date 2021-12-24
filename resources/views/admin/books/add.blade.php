@@ -35,6 +35,15 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="name">Slug <span class="text-danger">*</span></label>
+                            <input type="text" required="" class="form-control @error('slug') is-invalid @enderror" name="slug" id="" placeholder="Enter Slug" value="{{old('slug')}}">
+                            @error('slug')
+                                <small class="text-danger text-center ml-3" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="title">Sku <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('sku') is-invalid @enderror" name="sku" id="sku" placeholder="Enter book sku" value="{{old('sku')}}" maxlength="100" required>
                             @error('sku')

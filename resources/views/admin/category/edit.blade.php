@@ -13,7 +13,7 @@
 				<!-- Card Header - Dropdown -->
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold custom-header-color">Edit Category</h6>
-                    <a class="btn btn-sm btn-success text-white font-weight-bold custom-header-color m-0" href="{{route('category.add')}}">All Category</a>
+                    <a class="btn btn-sm btn-success text-white font-weight-bold custom-header-color m-0" href="{{route('category.list')}}">All Category</a>
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
@@ -21,8 +21,17 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Category Title <span class="text-danger">*</span></label>
-                            <input type="text" required="" class="form-control @error('title') is-invalid @enderror" name="title" id="" placeholder="Enter Title" value="{{ $subcategory->title ?? old('title')}}">
+                            <input type="text" required="" class="form-control @error('title') is-invalid @enderror" name="title" id="" placeholder="Enter Title" value="{{ $category->title ?? old('title')}}">
                             @error('title')
+                                <small class="text-danger text-center ml-3" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Category Slug <span class="text-danger">*</span></label>
+                            <input type="text" required="" class="form-control @error('slug') is-invalid @enderror" name="slug" id="" placeholder="Enter Slug" value="{{ $category->slug ?? old('slug')}}">
+                            @error('slug')
                                 <small class="text-danger text-center ml-3" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </small>

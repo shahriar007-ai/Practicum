@@ -26,52 +26,43 @@
 		<div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-0 font-weight-bold custom-header-color">All Books</h6>
-                    <a class="btn btn-sm btn-success text-white font-weight-bold  m-0" href="{{route('book.add')}}">Add Book</a>
-				</div>
+                    <h6 class="m-0 font-weight-bold custom-header-color">All Category</h6>
+                    <a class="btn btn-sm btn-success text-white font-weight-bold  m-0" href="{{route('category.add')}}">Add Category</a>
+                </div>
                 <div class="card-body">
                     <table class="table datatable">
                         <thead>
                             <tr>
                                 <th class="border-top-0">SL</th>
                                 <th scope="col" class="border-top-0">Image</th>
-                                <th scope="col" class="border-top-0"> Title</th>
-                                <th scope="col" class="border-top-0">Author</th>
-                                <th scope="col" class="border-top-0">Sku</th>
-                                <th scope="col" class="border-top-0">Regular Price</th>
-                                <th scope="col" class="border-top-0">Sale price</th>
+                                <th scope="col" class="border-top-0">Title</th>
+                                <!-- <th scope="col" class="border-top-0">Slug</th> -->
                                 <th scope="col" class="border-top-0">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $count=1;?>
-                            @forelse($books as $book)
+                            @forelse($parent_category as $category)
                                 <tr>
                                     <td>{{$count++}}</td>
-                                    <td>@if(!empty($book->featured_img))
-                                            <img src="{{asset('uploads/books/images/'.$book->featured_img)}}" class="rounded" alt="" height="50" width="50">
+                                    <td>@if(!empty($category->img))
+                                            <img src="{{asset('uploads/category/images/'.$category->img)}}" class="rounded" alt="" height="50" width="50">
                                         @else
                                             <img src="{{asset('admin_assets/img/no-img.png')}}" class="rounded" alt="Default image" height="50" width="50">
                                         @endif
                                     </td>
-                                    <td>{{$book->title}}</td>
-                                    <td>{{$book->author_name}}</td>
-                                    <td>{{$book->sku}}</td>
-                                    <td>{{$book->regular_price}}</td>
-                                    <td>{{$book->sale_price}}</td>
-                                    <td><a href="{{route('book.edit',$book->id)}}"><i style="color:green;font-size:14px;" class="fas fa-edit"></i></a>&nbsp;&nbsp;
-                                    <a href="{{route('book.delete',$book->id)}}" onclick="return confirm('Do you really want to delete this book?');"><i style="color:red;font-size:14px;" class="fas fa-trash-alt"></i></a></td>
+                                    <td title="{{$category->title}}">{{\Illuminate\Support\Str::limit($category->title,40,$end="...")}}</td>
+                                    <!-- <td title="{{$category->slug}}">{{\Illuminate\Support\Str::limit($category->slug,20,$end="...")}}</td> -->
+                                    <td><a href="{{route('category.edit',$category->slug)}}"><i style="color:green;font-size:14px;" class="fas fa-edit"></i></a>&nbsp;&nbsp;
+                                    <a href="{{route('category.delete',$category->id)}}" onclick="return confirm('Do you really want to delete this category?');"><i style="color:red;font-size:14px;" class="fas fa-trash-alt"></i></a></td>
                                 </tr> 
                             @empty
                                 <tr>
-                                    <td colspan="7" class="text-center">No Book Found.</td>
+                                    <td colspan="5" class="text-center">No Category Found.</td>
                                 </tr> 
                             @endforelse 
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-center">
-                        {!! $books->links() !!}
-                    </div>
                 </div>
             </div>
         </div>

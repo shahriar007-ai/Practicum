@@ -23,11 +23,12 @@
 		</div>
 	@endif
     <div class="row">
-		<div class="col-xl-6 col-lg-6">
+		<div class="col-xl-8 col-lg-8 mx-auto">
 			<div class="card shadow mb-4">
 				<!-- Card Header - Dropdown -->
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold custom-header-color">Add Tag</h6>
+                    <a class="btn btn-sm btn-success text-white font-weight-bold custom-header-color m-0" href="{{route('tag.list')}}">All Tags</a>
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
@@ -37,6 +38,15 @@
                             <label for="name">Tag Title <span class="text-danger">*</span></label>
                             <input type="text" required="" class="form-control @error('title') is-invalid @enderror" name="title" id="" placeholder="Enter Title" value="{{old('title')}}">
                             @error('title')
+                                <small class="text-danger text-center ml-3" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Tag Slug <span class="text-danger">*</span></label>
+                            <input type="text" required="" class="form-control @error('slug') is-invalid @enderror" name="slug" id="" placeholder="Enter Slug" value="{{old('slug')}}">
+                            @error('slug')
                                 <small class="text-danger text-center ml-3" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </small>
@@ -59,48 +69,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xl-6 col-lg-6">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold custom-header-color">All Tags</h6>
-                </div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="border-top-0">SL</th>
-                                <th scope="col" class="border-top-0">Image</th>
-                                <th scope="col" class="border-top-0">Title</th>
-                                <th scope="col" class="border-top-0">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $count=1;?>
-                            @forelse($tags as $tag)
-                                <tr>
-                                    <td>{{$count++}}</td>
-                                    <td>@if(!empty($tag->img))
-                                            <img src="{{asset('uploads/tags/images/'.$tag->img)}}" class="rounded" alt="" height="50" width="50"></td>
-                                        @else
-                                            <img src="{{asset('admin_assets/img/no-img.png')}}" class="rounded" alt="Default image" height="50" width="50"></td>
-                                        @endif
-                                    <td>{{$tag->title}}</td>
-                                    <td><a href="{{route('tag.edit',$tag->slug)}}"><i style="color:green;font-size:14px;" class="fas fa-edit"></i></a>&nbsp;&nbsp;
-                                    <a href="{{route('tag.delete',$tag->id)}}" onclick="return confirm('Do you really want to delete this tag?');"><i style="color:red;font-size:14px;" class="fas fa-trash-alt"></i></a></td>
-                                </tr> 
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center">No Tags Found.</td>
-                                </tr> 
-                            @endforelse 
-                        </tbody>
-                    </table>
-                    <div class="d-flex justify-content-center">
-                        {!! $tags->links() !!}
-                    </div>
-                </div>
-            </div>
-        </div>
 	</div>
 </div>
 @endsection

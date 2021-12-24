@@ -18,6 +18,7 @@ class AdminController extends Controller
     }
     public function postAdminLogin(Request $request){
         $request->validate([
+            // 'email' => 'required|string|email',
             'email' => 'required|string|email:rfc,dns',
             'password' => 'required|string',
         ]);

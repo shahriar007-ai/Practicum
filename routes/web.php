@@ -46,6 +46,7 @@ Route::middleware(['admin'])->group(function () {
             Route::get('/delete/{id}', [BookController::class, 'deleteBook'])->name('book.delete');
 
             Route::prefix('category')->group(function () {
+                Route::get('/list', [CategoryController::class, 'index'])->name('category.list');
                 Route::get('/add', [CategoryController::class, 'addCategory'])->name('category.add');
                 Route::post('/store', [CategoryController::class, 'storeCategory'])->name('category.store');
                 Route::get('/edit/{category:slug}', [CategoryController::class, 'editCategory'])->name('category.edit');
@@ -53,6 +54,7 @@ Route::middleware(['admin'])->group(function () {
                 Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
             });
             Route::prefix('subcategory')->group(function () {
+                Route::get('/list', [CategoryController::class, 'subCatList'])->name('subcategory.list');
                 Route::get('/add', [CategoryController::class, 'addSubCategory'])->name('subcategory.add');
                 Route::post('/store', [CategoryController::class, 'storeSubCategory'])->name('subcategory.store');
                 Route::get('/edit/{subcategory:slug}', [CategoryController::class, 'editSubCategory'])->name('subcategory.edit');
@@ -60,6 +62,7 @@ Route::middleware(['admin'])->group(function () {
                 Route::get('/delete/{id}', [CategoryController::class, 'deleteSubCategory'])->name('subcategory.delete');
             });
             Route::prefix('tags')->group(function () {
+                Route::get('/list', [TagController::class, 'index'])->name('tag.list');
                 Route::get('/add', [TagController::class, 'addTag'])->name('tag.add');
                 Route::post('/store', [TagController::class, 'storeTag'])->name('tag.store');
                 Route::get('/edit/{tag:slug}', [TagController::class, 'editTag'])->name('tag.edit');

@@ -61,7 +61,7 @@
 				<div class="col-lg-12">
 					<div class="section__title text-center">
 						<h2 class="title__be--2">New <span class="color--theme">Books</span></h2>
-						<p>Fresh and new books are available here.You can take a look.</p>
+						<p>Fresh and new books are available here.</p>
 					</div>
 				</div>
 			</div>
