@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             PaymentMethodSeeder::class,
             DivisionSeeder::class,
             DistrictSeeder::class,
+            CategorySeeder::class,
         ]);
     }
 }
