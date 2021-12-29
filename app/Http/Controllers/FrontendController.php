@@ -18,7 +18,12 @@ class FrontendController extends Controller
         $all_books=Book::where('status',1)->where('id','!=',$book->id)->get();
         return view('frontend.pages.book-details', compact('book','category','all_books'));
     }
-    public function shop(){
-        return view('frontend.pages.books');
+    public function books($category_id){
+        $category=Category::where('id',$category_id)->with('children')->first();
+        if(!empty($category)){
+            return view('frontend.pages.books',compact('category'));
+        }else {
+            abort(404);
+        }
     }
 }

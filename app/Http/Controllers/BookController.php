@@ -25,7 +25,7 @@ class BookController extends Controller
     public function storeBook(Request $request){
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:100|unique:books,title',
-            'slug' => 'required|string|max:60|unique:books,slug',
+            'slug' => 'required|string|max:100|unique:books,slug',
             'sku' => 'required|string|max:100|unique:books,sku',
             'short_desc' => 'nullable|string|max:1000',
             'description' => 'nullable|string|max:4000',
@@ -92,7 +92,7 @@ class BookController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:100|unique:books,title,'.$id,
-            'slug' => 'required|string|max:60|unique:books,slug,'.$id,
+            'slug' => 'required|string|max:100|unique:books,slug,'.$id,
             'sku' => 'required|string|max:100|unique:books,sku,'.$id,
             'short_desc' => 'nullable|string|max:1000',
             'description' => 'nullable|string|max:4000',

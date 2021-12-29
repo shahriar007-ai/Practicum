@@ -1,0 +1,8 @@
+﻿.cat-bg{
+  background:#EB9287;
+  font-size:13px;
+}
+a.cat-bg.p-1.rounded {
+  color: rgb(243, 243, 243);
+  border:1px solid #EB9287;
+}

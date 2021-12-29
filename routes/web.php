@@ -30,7 +30,7 @@ use App\Http\Controllers\PaymentMethodController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
 Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
-Route::get('/books', [FrontendController::class, 'shop'])->name('books');
+Route::get('/books/{category_id}/{category_slug}', [FrontendController::class, 'books'])->name('books');
 Route::get('/book/details/{book:slug}', [FrontendController::class, 'bookDetails'])->name('book.details');
 
 // admin

@@ -12,31 +12,31 @@
 				<nav class="mainmenu__nav">
 					<ul class="meninmenu d-flex justify-content-start">
 						<li class="drop with--one--item"><a href="{{route('home')}}">Home</a></li>
-						<li class="drop"><a href="{{route('books')}}">Books</a>
+						<li class="drop"><a href="#">Books</a>
 							<div class="megamenu mega03">
 								<ul class="item item03">
 									<li class="title">Categories</li>
-									<li><a href="{{route('books')}}">Biography </a></li>
-									<li><a href="{{route('books')}}">Business </a></li>
-									<li><a href="{{route('books')}}">Cookbooks </a></li>
-									<li><a href="{{route('books')}}">Health & Fitness </a></li>
-									<li><a href="{{route('books')}}">History </a></li>
+									<li><a href="">Biography </a></li>
+									<li><a href="">Business </a></li>
+									<li><a href="">Cookbooks </a></li>
+									<li><a href="">Health & Fitness </a></li>
+									<li><a href="">History </a></li>
 								</ul>
 								<ul class="item item03">
 									<li class="title">Customer Favourite</li>
-									<li><a href="{{route('books')}}">Mystery</a></li>
-									<li><a href="{{route('books')}}">Religion & Inspiration</a></li>
-									<li><a href="{{route('books')}}">Romance</a></li>
-									<li><a href="{{route('books')}}">Fiction/Fantasy</a></li>
-									<li><a href="{{route('books')}}">Sleeveless</a></li>
+									<li><a href="">Mystery</a></li>
+									<li><a href="">Religion & Inspiration</a></li>
+									<li><a href="">Romance</a></li>
+									<li><a href="">Fiction/Fantasy</a></li>
+									<li><a href="">Sleeveless</a></li>
 								</ul>
 								<ul class="item item03">
 									<li class="title">Collections</li>
-									<li><a href="{{route('books')}}">Science </a></li>
-									<li><a href="{{route('books')}}">Fiction/Fantasy</a></li>
-									<li><a href="{{route('books')}}">Self-Improvemen</a></li>
-									<li><a href="{{route('books')}}">Home & Garden</a></li>
-									<li><a href="{{route('books')}}">Humor Books</a></li>
+									<li><a href="">Science </a></li>
+									<li><a href="">Fiction/Fantasy</a></li>
+									<li><a href="">Self-Improvemen</a></li>
+									<li><a href="">Home & Garden</a></li>
+									<li><a href="">Humor Books</a></li>
 								</ul>
 							</div>
 						</li>
@@ -88,9 +88,9 @@
 				<nav class="mobilemenu__nav">
 					<ul class="meninmenu">
 						<li><a href="{{route('home')}}">Home</a></li>
-						<li><a href="{{route('books')}}">Books</a>
+						<li><a href="">Books</a>
 							<ul>
-								<li><a href="{{route('books')}}">Shop Grid</a></li>
+								<li><a href="">Shop Grid</a></li>
 								<li><a href="">Single Product</a></li>
 							</ul>
 						</li>

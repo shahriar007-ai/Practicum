@@ -21,27 +21,20 @@
 		<div class="row">
 			<div class="col-lg-3 col-12 order-2 order-lg-1 md-mt-40 sm-mt-40">
 				<div class="shop__sidebar">
-					<aside class="wedget__categories poroduct--cat">
-						<h3 class="wedget__title">Book Categories</h3>
+					@if($category->parent_id==0)
+						<aside class="wedget__categories poroduct--cat">
+						<h3 class="wedget__title">{{$category->title}}</h3>
 						<ul>
-							<li><a href="#">Biography <span>(3)</span></a></li>
-							<li><a href="#">Business <span>(4)</span></a></li>
-							<li><a href="#">Cookbooks <span>(6)</span></a></li>
-							<li><a href="#">Health & Fitness <span>(7)</span></a></li>
-							<li><a href="#">History <span>(8)</span></a></li>
-							<li><a href="#">Mystery <span>(9)</span></a></li>
-							<li><a href="#">Inspiration <span>(13)</span></a></li>
-							<li><a href="#">Romance <span>(20)</span></a></li>
-							<li><a href="#">Fiction/Fantasy <span>(22)</span></a></li>
-							<li><a href="#">Self-Improvement <span>(13)</span></a></li>
-							<li><a href="#">Humor Books <span>(17)</span></a></li>
-							<li><a href="#">Harry Potter <span>(20)</span></a></li>
-							<li><a href="#">Land of Stories <span>(34)</span></a></li>
-							<li><a href="#">Kids' Music <span>(60)</span></a></li>
-							<li><a href="#">Toys & Games <span>(3)</span></a></li>
-							<li><a href="#">hoodies <span>(3)</span></a></li>
+							@foreach(getCategories()['book_count'] as $sub_category)
+								@if($category->id == $sub_category->parent_id)
+									<li title="{{$sub_category->title}}"><a href="{{route('books',[$sub_category->id,$sub_category->slug])}}">{{\Illuminate\Support\Str::limit($sub_category->title,30,$end='...')}}<span>({{$sub_category->Count}})</span></a></li>
+								@endif
+							@endforeach
 						</ul>
 					</aside>
+					@else
+
+					@endif
 					<aside class="wedget__categories poroduct--tag">
 						<h3 class="wedget__title">Book Tags</h3>
 						<ul>
@@ -80,222 +73,26 @@
 				<div class="tab__container">
 					<div class="shop-grid tab-pane fade show active" id="nav-grid" role="tabpanel">
 						<div class="row">
+							@foreach(getBookByCat($category->id) as $book)
 							<!-- Start Single Product -->
 							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/1.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/2.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">BEST SELLER</span>
-									</div>
+									<a class="first__img" href="{{route('book.details',$book->slug)}}"><img src="{{asset('uploads/books/images/'.$book->featured_img)}}" alt="{{$book->title}}"></a>
+									@if(!empty($book->flash_title))
+										<div class="hot__box">
+											<span class="hot-label">{{$book->flash_title}}</span>
+										</div>
+									@endif
 								</div>
 								<div class="product__content content--center">
-									<h4><a href="{{route('book.details')}}">robin parrish</a></h4>
+									<h4><a href="{{route('book.details',$book->slug)}}">{{$book->title}}</a></h4>
 									<ul class="prize d-flex">
-										<li>$35.00</li>
-										<li class="old_prize">$35.00</li>
+										<li>৳{{$book->sale_price}}</li>
+										<li class="old_prize">৳{{$book->regular_price}}</li>
 									</ul>
 								</div>
 							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/3.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/4.jpg')}}" alt="product image"></a>
-									<div class="hot__box color--2">
-										<span class="hot-label">HOT</span>
-									</div>
-								</div>
-								<div class="product__content content--center">
-									<h4><a href="{{route('book.details')}}">The Remainng</a></h4>
-									<ul class="prize d-flex">
-										<li>$35.00</li>
-										<li class="old_prize">$35.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/7.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/8.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">HOT</span>
-									</div>
-								</div>
-								<div class="product__content content--center">
-									<h4><a href="{{route('book.details')}}">Lando</a></h4>
-									<ul class="prize d-flex">
-										<li>$35.00</li>
-										<li class="old_prize">$50.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/9.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/10.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">HOT</span>
-									</div>
-								</div>
-								<div class="product__content content--center">
-									<h4><a href="{{route('book.details')}}">Doctor Wldo</a></h4>
-									<ul class="prize d-flex">
-										<li>$35.00</li>
-										<li class="old_prize">$35.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/11.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/2.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">BEST SELLER</span>
-									</div>
-								</div>
-								<div class="product__content content--center content--center">
-									<h4><a href="{{route('book.details')}}">Animals Life</a></h4>
-									<ul class="prize d-flex">
-										<li>$50.00</li>
-										<li class="old_prize">$35.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/1.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/6.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">BEST SELLER</span>
-									</div>
-								</div>
-								<div class="product__content content--center content--center">
-									<h4><a href="{{route('book.details')}}">Olio Madu</a></h4>
-									<ul class="prize d-flex">
-										<li>$50.00</li>
-										<li class="old_prize">$35.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/3.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/8.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">BEST SELLER</span>
-									</div>
-								</div>
-								<div class="product__content content--center content--center">
-									<h4><a href="{{route('book.details')}}">Soad Humber</a></h4>
-									<ul class="prize d-flex">
-										<li>$50.00</li>
-										<li class="old_prize">$35.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/10.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/2.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">BEST SELLER</span>
-									</div>
-								</div>
-								<div class="product__content content--center content--center">
-									<h4><a href="{{route('book.details')}}">Animals Life</a></h4>
-									<ul class="prize d-flex">
-										<li>$50.00</li>
-										<li class="old_prize">$35.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/7.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/3.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">BEST SELLER</span>
-									</div>
-								</div>
-								<div class="product__content content--center content--center">
-									<h4><a href="{{route('book.details')}}">Olio Madu</a></h4>
-									<ul class="prize d-flex">
-										<li>$50.00</li>
-										<li class="old_prize">$35.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/1.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/5.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">BEST SELLER</span>
-									</div>
-								</div>
-								<div class="product__content content--center content--center">
-									<h4><a href="{{route('book.details')}}">War Of Dragon</a></h4>
-									<ul class="prize d-flex">
-										<li>$50.00</li>
-										<li class="old_prize">$35.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/9.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/4.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">BEST SELLER</span>
-									</div>
-								</div>
-								<div class="product__content content--center content--center">
-									<h4><a href="{{route('book.details')}}">New World</a></h4>
-									<ul class="prize d-flex">
-										<li>$50.00</li>
-										<li class="old_prize">$35.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
-							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-								<div class="product__thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/5.jpg')}}" alt="product image"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/books/8.jpg')}}" alt="product image"></a>
-									<div class="hot__box">
-										<span class="hot-label">BEST SELLER</span>
-									</div>
-								</div>
-								<div class="product__content content--center content--center">
-									<h4><a href="{{route('book.details')}}">Our World</a></h4>
-									<ul class="prize d-flex">
-										<li>$50.00</li>
-										<li class="old_prize">$35.00</li>
-									</ul>
-								</div>
-							</div>
-							<!-- End Single Product -->
+							@endforeach
 						</div>
 						<ul class="wn__pagination">
 							<li class="active"><a href="#">1</a></li>
@@ -310,11 +107,11 @@
 							<!-- Start Single Product -->
 							<div class="list__view">
 								<div class="thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/product/1.jpg')}}" alt="product images"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/product/2.jpg')}}" alt="product images"></a>
+									<a class="first__img" href=""><img src="{{asset('assets/images/product/1.jpg')}}" alt="product images"></a>
+									<a class="second__img animation1" href=""><img src="{{asset('assets/images/product/2.jpg')}}" alt="product images"></a>
 								</div>
 								<div class="content">
-									<h2><a href="{{route('book.details')}}">Ali Smith</a></h2>
+									<h2><a href="">Ali Smith</a></h2>
 									<ul class="rating d-flex">
 										<li class="on"><i class="fa fa-star-o"></i></li>
 										<li class="on"><i class="fa fa-star-o"></i></li>
@@ -340,11 +137,11 @@
 							<!-- Start Single Product -->
 							<div class="list__view mt--40">
 								<div class="thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/product/2.jpg')}}" alt="product images"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/product/4.jpg')}}" alt="product images"></a>
+									<a class="first__img" href=""><img src="{{asset('assets/images/product/2.jpg')}}" alt="product images"></a>
+									<a class="second__img animation1" href=""><img src="{{asset('assets/images/product/4.jpg')}}" alt="product images"></a>
 								</div>
 								<div class="content">
-									<h2><a href="{{route('book.details')}}">Blood In Water</a></h2>
+									<h2><a href="">Blood In Water</a></h2>
 									<ul class="rating d-flex">
 										<li class="on"><i class="fa fa-star-o"></i></li>
 										<li class="on"><i class="fa fa-star-o"></i></li>
@@ -370,11 +167,11 @@
 							<!-- Start Single Product -->
 							<div class="list__view mt--40">
 								<div class="thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/product/3.jpg')}}" alt="product images"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/product/6.jpg')}}" alt="product images"></a>
+									<a class="first__img" href=""><img src="{{asset('assets/images/product/3.jpg')}}" alt="product images"></a>
+									<a class="second__img animation1" href=""><img src="{{asset('assets/images/product/6.jpg')}}" alt="product images"></a>
 								</div>
 								<div class="content">
-									<h2><a href="{{route('book.details')}}">Madeness Overated</a></h2>
+									<h2><a href="">Madeness Overated</a></h2>
 									<ul class="rating d-flex">
 										<li class="on"><i class="fa fa-star-o"></i></li>
 										<li class="on"><i class="fa fa-star-o"></i></li>
@@ -400,11 +197,11 @@
 							<!-- Start Single Product -->
 							<div class="list__view mt--40">
 								<div class="thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/product/4.jpg')}}" alt="product images"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/product/6.jpg')}}" alt="product images"></a>
+									<a class="first__img" href=""><img src="{{asset('assets/images/product/4.jpg')}}" alt="product images"></a>
+									<a class="second__img animation1" href=""><img src="{{asset('assets/images/product/6.jpg')}}" alt="product images"></a>
 								</div>
 								<div class="content">
-									<h2><a href="{{route('book.details')}}">Watching You</a></h2>
+									<h2><a href="">Watching You</a></h2>
 									<ul class="rating d-flex">
 										<li class="on"><i class="fa fa-star-o"></i></li>
 										<li class="on"><i class="fa fa-star-o"></i></li>
@@ -430,11 +227,11 @@
 							<!-- Start Single Product -->
 							<div class="list__view mt--40">
 								<div class="thumb">
-									<a class="first__img" href="{{route('book.details')}}"><img src="{{asset('assets/images/product/5.jpg')}}" alt="product images"></a>
-									<a class="second__img animation1" href="{{route('book.details')}}"><img src="{{asset('assets/images/product/9.jpg')}}" alt="product images"></a>
+									<a class="first__img" href=""><img src="{{asset('assets/images/product/5.jpg')}}" alt="product images"></a>
+									<a class="second__img animation1" href=""><img src="{{asset('assets/images/product/9.jpg')}}" alt="product images"></a>
 								</div>
 								<div class="content">
-									<h2><a href="{{route('book.details')}}">Court Wings Run</a></h2>
+									<h2><a href="">Court Wings Run</a></h2>
 									<ul class="rating d-flex">
 										<li class="on"><i class="fa fa-star-o"></i></li>
 										<li class="on"><i class="fa fa-star-o"></i></li>

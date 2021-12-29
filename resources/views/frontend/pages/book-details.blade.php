@@ -41,9 +41,9 @@
                                 </div>
                                 <div class="box-tocart d-flex">
                                     <span>Qty</span>
-                                    <input id="qty" class="input-text qty" name="qty" min="1" value="1" title="Qty" type="number">
+                                    <input id="qty" class="input-text qty rounded" name="qty" min="1" value="1" title="Qty" type="number">
                                     <div class="addtocart__actions">
-                                        <button class="tocart" type="submit" title="Add to Cart">Add to Cart</button>
+                                        <button class="tocart rounded" type="submit" title="Add to Cart">Add to Cart</button>
                                     </div>
                                     <div class="product-addto-links clearfix">
                                         <a class="wishlist" href="#"></a>
@@ -52,7 +52,7 @@
                                 <div class="product_meta">
                                     <span class="posted_in "><span class="product-share">Categories:</span>
                                         @foreach($category as $cat)
-                                            @if(in_array($cat->id, getCatIds($book->category_id))) {{$cat->title}},@endif                                    
+                                            @if(in_array($cat->id, getCatIds($book->category_id)))<a class="cat-bg p-1 rounded" href="{{route('books',[$cat->id,$cat->slug])}}">{{$cat->title}}</a>&nbsp;@endif                                    
                                         @endforeach
                                     </span>
                                 </div>
