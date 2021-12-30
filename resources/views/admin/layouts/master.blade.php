@@ -100,6 +100,8 @@
     <script src="{{asset('admin_assets/vendor/chart.js/Chart.min.js')}}"></script>
 
     <script src="{{asset('admin_assets/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script> -->
+    <script src="{{asset('admin_assets/vendor/ckeditor5/31.1.0/classic/ckeditor.js')}}"></script>
     <script src="{{asset('admin_assets/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page level custom scripts -->
@@ -121,6 +123,16 @@
         $(document).ready(function() {
             $('.datatable').DataTable();
         });
+    </script>
+    <script>
+         ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .then( editor => {
+                    console.log( editor );
+            } )
+            .catch( error => {
+                    console.error( error );
+            } );
     </script>
 </body>
 </html>

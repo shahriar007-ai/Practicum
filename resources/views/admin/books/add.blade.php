@@ -73,7 +73,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="6" id="description" placeholder="Enter book description" maxlength="4000">{{old('description')}}</textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror description" name="description" rows="6" id="description" placeholder="Enter book description" maxlength="4000">{{old('description')}}</textarea>
                             @error('description')
                             <span class="text-danger" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -1,8 +1,33 @@
-﻿.cat-bg{
+﻿@font-face {
+  font-family: SiyamRupali;
+  src: url('/assets/fonts/Siyamrupali.tff');
+}
+.cat-bg{
   background:#EB9287;
   font-size:13px;
 }
 a.cat-bg.p-1.rounded {
   color: rgb(243, 243, 243);
   border:1px solid #EB9287;
+}
+.addReadMore.showlesscontent .SecSec,
+.addReadMore.showlesscontent .readLess {
+    display: none;
+}
+
+.addReadMore.showmorecontent .readMore {
+    display: none;
+}
+
+.addReadMore .readMore,
+.addReadMore .readLess {
+    font-weight: bold;
+    margin-left: 2px;
+    color: #EB9287;
+    cursor: pointer;
+}
+
+.addReadMoreWrapTxt.showmorecontent .SecSec,
+.addReadMoreWrapTxt.showmorecontent .readLess {
+    display: block;
 }

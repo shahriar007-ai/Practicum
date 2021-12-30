@@ -70,7 +70,7 @@
 				<!-- Start Single Product -->
 				@foreach($new_books as $nwbook)
 				<div class="product product__style--3">
-					<div class="col-lg-3 col-md-4 col-sm-6 col-12">
+					<div class="col-lg-3 col-md-3 col-sm-6 col-12">
 						<div class="product__thumb">
 							<a class="first__img" href="{{route('book.details',$nwbook->slug)}}"><img src="{{asset('uploads/books/images/'.$nwbook->featured_img)}}" alt="{{$nwbook->title}}"></a>
 							@if(!empty($nwbook->flash_title))
@@ -93,74 +93,42 @@
 			<!-- End Single Tab Content -->
 		</div>
 	</section>
-	<section class="best-seel-area pt--80 pb--60" id="best-seller">
+	<section class="wn__product__area brown--color pt--80  pb--30" id="new-books">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="section__title text-center pb--50">
+					<div class="section__title text-center">
 						<h2 class="title__be--2">Best <span class="color--theme">Seller </span></h2>
 						<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered lebmid alteration in some ledmid form</p>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="slider center">
-			<!-- Single product start -->
-			<div class="product product__style--3">
-				<div class="product__thumb">
-					<a class="first__img" href=""><img src="{{asset('assets/images/best-sell-product/1.jpg')}}" alt="product image"></a>
+			<!-- Start Single Tab Content -->
+			<div class="furniture--4 border--round arrows_style owl-carousel owl-theme row mt--50">
+				<!-- Start Single Product -->
+				@foreach($new_books as $nwbook)
+				<div class="product product__style--3">
+					<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+						<div class="product__thumb">
+							<a class="first__img" href="{{route('book.details',$nwbook->slug)}}"><img src="{{asset('uploads/books/images/'.$nwbook->featured_img)}}" alt="{{$nwbook->title}}"></a>
+							@if(!empty($nwbook->flash_title))
+								<div class="hot__box">
+									<span class="hot-label">{{$nwbook->flash_title}}</span>
+								</div>
+							@endif
+						</div>
+						<div class="product__content content--center">
+							<h4><a href="{{route('book.details',$nwbook->slug)}}">{{$nwbook->title}}</a></h4>
+							<ul class="prize d-flex">
+								<li>৳{{$nwbook->sale_price}}</li>
+								<li class="old_prize">৳{{$nwbook->regular_price}}</li>
+							</ul>
+						</div>
+					</div>
 				</div>
+				@endforeach
 			</div>
-			<!-- Single product end -->
-			<!-- Single product start -->
-			<div class="product product__style--3">
-				<div class="product__thumb">
-					<a class="first__img" href=""><img src="{{asset('assets/images/best-sell-product/2.jpg')}}" alt="product image"></a>
-				</div>
-			</div>
-			<!-- Single product end -->
-			<!-- Single product start -->
-			<div class="product product__style--3">
-				<div class="product__thumb">
-					<a class="first__img" href=""><img src="{{asset('assets/images/best-sell-product/3.jpg')}}" alt="product image"></a>
-				</div>
-			</div>
-			<!-- Single product end -->
-			<!-- Single product start -->
-			<div class="product product__style--3">
-				<div class="product__thumb">
-					<a class="first__img" href=""><img src="{{asset('assets/images/best-sell-product/4.jpg')}}" alt="product image"></a>
-				</div>
-			</div>
-			<!-- Single product end -->
-			<!-- Single product start -->
-			<div class="product product__style--3">
-				<div class="product__thumb">
-					<a class="first__img" href=""><img src="{{asset('assets/images/best-sell-product/5.jpg')}}" alt="product image"></a>
-				</div>
-			</div>
-			<!-- Single product end -->
-			<!-- Single product start -->
-			<div class="product product__style--3">
-				<div class="product__thumb">
-					<a class="first__img" href=""><img src="{{asset('assets/images/best-sell-product/6.jpg')}}" alt="product image"></a>
-				</div>
-			</div>
-			<!-- Single product end -->
-			<!-- Single product start -->
-			<div class="product product__style--3">
-				<div class="product__thumb">
-					<a class="first__img" href=""><img src="{{asset('assets/images/best-sell-product/7.jpg')}}" alt="product image"></a>
-				</div>
-			</div>
-			<!-- Single product end -->
-			<!-- Single product start -->
-			<div class="product product__style--3">
-				<div class="product__thumb">
-					<a class="first__img" href=""><img src="{{asset('assets/images/best-sell-product/8.jpg')}}" alt="product image"></a>
-				</div>
-			</div>
-			<!-- Single product end -->
+			<!-- End Single Tab Content -->
 		</div>
 	</section>	
 @endsection

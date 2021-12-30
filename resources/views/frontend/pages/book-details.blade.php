@@ -1,4 +1,11 @@
 @extends('frontend.layouts.master')
+@push('css')
+<style>
+    .maincontent{
+        font-family: SiyamRupali;
+    }
+</style>
+@endpush
 @section('content')
 <div class="ht__bradcaump__area bg-image--4">
     <div class="container">
@@ -33,8 +40,8 @@
                             <div class="product__info__main">
                                 <h1>{{$book->title}}</h1>
                                 <div class="h5 text-success">
-                                    <span>৳{{$book->sale_price}}</span>&nbsp;&nbsp;&nbsp;
-                                    <del style="color:#EB9287;">৳{{$book->regular_price}}</del>
+                                    <span>৳{{$book->sale_price}} </span>&nbsp;&nbsp;&nbsp;
+                                    <del style="color:#EB9287;">৳{{$book->regular_price}}</del> <small>(You can save ৳{{$book->regular_price - $book->sale_price}})</small>
                                 </div>
                                 <div class="product__overview">
                                     <p class="text-justify">{{Illuminate\Support\Str::limit($book->short_desc,300,$end="...")}}</p>
@@ -82,14 +89,16 @@
                 </div>
                 <div class="product__info__detailed">
                     <div class="pro_details_nav nav justify-content-start" role="tablist">
-                        <a class="nav-item nav-link active" data-toggle="tab" href="#nav-details" role="tab">Details</a>
+                        @if(!empty($book->description))
+                            <a class="nav-item nav-link active" data-toggle="tab" href="#nav-details" role="tab">Details</a>
+                        @endif
                         <a class="nav-item nav-link" data-toggle="tab" href="#nav-review" role="tab">Reviews</a>
                     </div>
                     <div class="tab__container">
                         <!-- Start Single Tab Content -->
                         <div class="pro__tab_label tab-pane fade show active" id="nav-details" role="tabpanel">
-                            <div class="description__attribute text-justify">
-                                <p>{{$book->description}}</p>
+                            <div class="description__attribute text-justify addReadMore showlesscontent">
+                                {!!$book->description!!}
                             </div>
                         </div>
                         <!-- End Single Tab Content -->

@@ -22,22 +22,6 @@
 									<li><a href="">Health & Fitness </a></li>
 									<li><a href="">History </a></li>
 								</ul>
-								<ul class="item item03">
-									<li class="title">Customer Favourite</li>
-									<li><a href="">Mystery</a></li>
-									<li><a href="">Religion & Inspiration</a></li>
-									<li><a href="">Romance</a></li>
-									<li><a href="">Fiction/Fantasy</a></li>
-									<li><a href="">Sleeveless</a></li>
-								</ul>
-								<ul class="item item03">
-									<li class="title">Collections</li>
-									<li><a href="">Science </a></li>
-									<li><a href="">Fiction/Fantasy</a></li>
-									<li><a href="">Self-Improvemen</a></li>
-									<li><a href="">Home & Garden</a></li>
-									<li><a href="">Humor Books</a></li>
-								</ul>
 							</div>
 						</li>
 						<li><a href="contact.html">Contact</a></li>

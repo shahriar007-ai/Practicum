@@ -75,7 +75,7 @@
 						<div class="row">
 							@foreach(getBookByCat($category->id) as $book)
 							<!-- Start Single Product -->
-							<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
+							<div class="product product__style--3 col-lg-3 col-md-3 col-sm-6 col-12">
 								<div class="product__thumb">
 									<a class="first__img" href="{{route('book.details',$book->slug)}}"><img src="{{asset('uploads/books/images/'.$book->featured_img)}}" alt="{{$book->title}}"></a>
 									@if(!empty($book->flash_title))
