@@ -1,11 +1,4 @@
 @extends('frontend.layouts.master')
-@push('css')
-<style>
-    .maincontent{
-        font-family: SiyamRupali;
-    }
-</style>
-@endpush
 @section('content')
 <div class="ht__bradcaump__area bg-image--4">
     <div class="container">

@@ -24,6 +24,11 @@
 
 	<!-- Cusom css -->
    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+   <style>
+	   body{
+		     /* font-family: 'SiyamRupali'; */
+	   }
+   </style>
 	@stack('css')
 	<!-- Modernizer js -->
 	<script src="{{asset('assets/js/vendor/modernizr-3.5.0.min.js')}}"></script>

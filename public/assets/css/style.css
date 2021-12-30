@@ -108,7 +108,8 @@ button,
 input,
 select,
 textarea {
-  font-family: "Source Sans Pro", Helvetica, sans-serif; }
+  font-family: "Source Sans Pro", Helvetica, sans-serif; 
+}
 
 body {
   color: #141412;
