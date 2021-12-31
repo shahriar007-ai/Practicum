@@ -31,3 +31,51 @@ a.cat-bg.p-1.rounded {
 .addReadMoreWrapTxt.showmorecontent .readLess {
     display: block;
 }
+.rating-color{
+  color: #ce7852;
+}
+.user-rating{
+  font-size:12px;
+}
+button.btn.btn-sm.tocart.rounded {
+  background: #ce7852;
+  color: white;
+}
+p.review-text.js--review-short.mt-1 {
+  font-size: 13px;
+  margin-left: 7px;
+}
+.star-light {
+  color: #c7cbd4;
+}
+.rating{
+  font-size:16px;
+}
+button.btn.tocart.rounded.ml-4 {
+  color: #d4805d;
+  border: 1px solid #d4805d;
+  background: none;
+}
+a.btn.btn-review {
+  border: 1px solid #cc7b59;
+  background: none;
+  color: #cc7b59;
+   outline: none;
+  box-shadow: none;
+}
+a.btn.btn-sm.write-review {
+  border: 1px solid #ca7a58;
+  color: #ca7a58;
+  background: none;
+  outline: none;
+  box-shadow: none;
+}
+textarea#js--review-writing {
+  outline: 0;
+  box-shadow: none;
+  border: 0;
+  resize: none;
+}
+.del-color{
+  color:#EB9287;
+}

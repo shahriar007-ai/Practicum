@@ -21,6 +21,9 @@
 	<link rel="stylesheet" href="{{asset('assets/css/plugins.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 
 	<!-- Cusom css -->
    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
@@ -31,6 +34,8 @@
    </style>
 	@stack('css')
 	<!-- Modernizer js -->
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
 	<script src="{{asset('assets/js/vendor/modernizr-3.5.0.min.js')}}"></script>
 </head>
 <body>
@@ -140,6 +145,7 @@
 	<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('assets/js/plugins.js')}}"></script>
 	<script src="{{asset('assets/js/active.js')}}"></script>
+	
 	<script>
 		function AddReadMore() {
 			//This limit you can set after how much characters you want to show Read More.
@@ -174,6 +180,34 @@
 			AddReadMore();
 		});
 	</script>
-
+	<script>
+		$(document).on('mouseenter', '.submit_star', function(){
+			var rating = $(this).data('rating');
+			reset_background();
+			for(var count = 1; count <= rating; count++)
+			{
+				$('#submit_star_'+count).addClass('text-warning');
+			}
+		});
+		function reset_background()
+		{
+			for(var count = 1; count <= 5; count++)
+			{
+				$('#submit_star_'+count).addClass('star-light');
+				$('#submit_star_'+count).removeClass('text-warning');
+			}
+		}
+		$(document).on('mouseleave', '.submit_star', function(){
+			reset_background();
+			for(var count = 1; count <= rating_data; count++)
+			{
+				$('#submit_star_'+count).removeClass('star-light');
+				$('#submit_star_'+count).addClass('text-warning');
+			}
+		});
+		$(document).on('click', '.submit_star', function(){
+			rating_data = $(this).data('rating');
+		});
+	</script>
 </body>
 </html>
