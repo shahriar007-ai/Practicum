@@ -181,6 +181,7 @@
 		});
 	</script>
 	<script>
+		var rating_data = 0;
 		$(document).on('mouseenter', '.submit_star', function(){
 			var rating = $(this).data('rating');
 			reset_background();
@@ -205,9 +206,7 @@
 				$('#submit_star_'+count).addClass('text-warning');
 			}
 		});
-		$(document).on('click', '.submit_star', function(){
-			rating_data = $(this).data('rating');
-		});
 	</script>
+	@yield('scripts')
 </body>
 </html>

@@ -144,14 +144,8 @@
                 </div>
                 <section class="mt-4">
                     <div class="details-ratings-review">
-                        <div class="alert alert-success alert-dismissible fade show" role="alert" id="js--message-review" style="display: none;">
-                            <strong><i class="ion-information-circled"></i></strong>
-                            <p id="js--review-message-text">Thank you for rating!</p>
-                            <button type="button" class="js--message-close close" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-
+                        <div id="success-message"></div>
+                        <div id="error-message"></div>
                         <div class="details-ratings-review__header">
                             <div class="row">
                                 <div class="col mb-2">
@@ -181,34 +175,43 @@
                                     </div>
                                 </div>
                                 <p>
-                                    <a class="btn btn-sm write-review" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        Write a Review
-                                    </a>
+                                    @auth
+                                        <a class="btn btn-sm write-review" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                            Write a Review
+                                        </a>
+                                    @else
+                                        <a class="btn btn-sm write-review" href="{{route('login')}}">
+                                            Please login to write a review
+                                        </a>
+                                    @endauth
                                 </p>
                             </div>
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body">
-                                    <div class="ratings-review__content--form">
-                                        <form class="js--review-form">
-                                            <div class="form-group">
-                                                <textarea class="form-control" id="js--review-writing" rows="3" placeholder="Please write your honest opinion"></textarea>
-                                                <div class="d-flex align-items-center mt-4 ml-2 h4">
-                                                    <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
-                                                    <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
-                                                    <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
-                                                    <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
-                                                    <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
-                                                    <button class="btn tocart rounded ml-4">Submit</button>
+                            @auth
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <div class="ratings-review__content--form">
+                                            <form class="js--review-form">
+                                                <div class="form-group">
+                                                    <textarea class="form-control review_data" id="js--review-writing" rows="3" placeholder="Please write your honest opinion"></textarea>
+                                                    <div class="d-flex align-items-center mt-4 ml-2 h4">
+                                                        <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
+                                                        <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
+                                                        <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
+                                                        <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
+                                                        <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+                                                        <button class="btn tocart rounded ml-4 save_review">Submit</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endauth
                         </div>
                     </div>
-                  <br>
-                  <div class="review mb-3">
+                    <br>
+                    @auth
+                    <div class="review mb-3">
                         <div class="user-info d-flex align-items-center">
                             <img class="user-img rounded-circle ml-1" src="https://lh3.googleusercontent.com/a-/AOh14GgJOcR_5UjbowPU_85l4c1aFnRikoocg7kO6UEBgCE=s96-c" alt="user-img" width="40">
                             <div class="info">
@@ -253,6 +256,7 @@
                             <p class="js--review-read-more d-none">Read More</p>
                         </div>
                     </div>
+                    @endauth
 
                 </section>
             </div>
@@ -284,5 +288,65 @@
     <div class="close__wrap">
         <span>close</span>
     </div>
-</div>		
+</div>
+@endsection
+@section('scripts')
+<script>
+    $(document).on('click', '.submit_star', function(){
+        rating_data = $(this).data('rating');
+        $.ajax({
+            url:"{{route('rating.store-update')}}",
+            method:"POST",
+            data:{rating_data:rating_data,user_id:"{{Auth::user()->id}}",book_id:"{{$book->id}}",_token:"{{csrf_token()}}"},
+            success:function(data)
+            {   
+                $('html, body').animate(
+                    {
+                        scrollTop: $('#success-message').offset().top - 70
+                    },
+                        'slow',
+                        'swing'
+                    );
+                console.log(data);
+                $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for your rating.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            }
+        })
+    });
+    $(document).on('click', '.save_review', function(e){
+        e.preventDefault();
+        var review_data = $('.review_data').val();
+        console.log(review_data);
+        if(review_data == ''){
+            $('html, body').animate(
+            {
+                scrollTop: $('#error-message').offset().top - 70
+            },
+                'slow',
+                'swing'
+            );
+            $('#error-message').html('<div class="alert alert-danger alert-dismissible fade show" role="alert">Please write your review.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            $('#success-message').html('');
+        }else{
+            $.ajax({
+                url:"{{route('review.store-update')}}",
+                method:"POST",
+                data:{review_data:review_data,user_id:"{{Auth::user()->id}}",book_id:"{{$book->id}}",_token:"{{csrf_token()}}"},
+                success:function(data)
+                {   
+                    console.log(data);
+                    $('html, body').animate(
+                    {
+                        scrollTop: $('#success-message').offset().top - 70
+                    },
+                        'slow',
+                        'swing'
+                    );
+                    $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for submitting your valueable opinion.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    $('#error-message').html('');
+                    $('.review_data').val('');
+                }
+            });
+        }
+    });
+</script>
 @endsection

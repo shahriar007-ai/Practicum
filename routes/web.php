@@ -12,6 +12,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\BookReviewController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -102,5 +103,7 @@ Auth::routes();
 Route::middleware(['auth','user'])->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+        Route::post('/rating/store/update', [BookReviewController::class, 'ratingStoreUpdate'])->name('rating.store-update');
+        Route::post('/review/store/update', [BookReviewController::class, 'reviewStoreUpdate'])->name('review.store-update');
     });
 });
