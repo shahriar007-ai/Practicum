@@ -15,8 +15,9 @@ class FrontendController extends Controller
     }
     public function bookDetails(Book $book){
         $category=Category::where('status',1)->get();
+        $reviews = $book->reviews()->with('getUser')->where('status',1)->orderBy('updated_at','desc')->get();   
         $all_books=Book::where('status',1)->where('id','!=',$book->id)->get();
-        return view('frontend.pages.book-details', compact('book','category','all_books'));
+        return view('frontend.pages.book-details', compact('book','category','all_books','reviews'));
     }
     public function books($category_id){
         $category=Category::where('id',$category_id)->with('children')->first();

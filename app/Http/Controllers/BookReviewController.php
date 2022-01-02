@@ -16,7 +16,13 @@ class BookReviewController extends Controller
             ['book_id' => $book_id, 'user_id' => $user_id],
             ['user_rating' => $user_rating]
         );
-        return response()->json(['success'=>'Rating Saved Successfully']);
+        return response()->json([
+            'success'=>'Rating Saved Successfully',
+            'rating'=>$book_rating->user_rating,
+            'book_id'=>$book_id,
+            'user_id'=>$user_id,
+            'user_review'=>$book_rating->user_review,
+        ]);
     }
     public function reviewStoreUpdate(Request $request){
         // return $request->all();
@@ -27,6 +33,11 @@ class BookReviewController extends Controller
             ['book_id' => $book_id, 'user_id' => $user_id],
             ['user_review' => $user_review]
         );
-        return response()->json(['success'=>'Review Saved Successfully']);
+        return response()->json([
+            'success'=>'Review Saved Successfully',
+            'book_id'=>$book_id,
+            'user_id'=>$user_id,
+            'user_review'=>$book_review->user_review,
+        ]);
     }
 }

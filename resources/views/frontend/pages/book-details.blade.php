@@ -194,11 +194,9 @@
                                                 <div class="form-group">
                                                     <textarea class="form-control review_data" id="js--review-writing" rows="3" placeholder="Please write your honest opinion"></textarea>
                                                     <div class="d-flex align-items-center mt-4 ml-2 h4">
-                                                        <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_1" data-rating="1"></i>
-                                                        <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_2" data-rating="2"></i>
-                                                        <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_3" data-rating="3"></i>
-                                                        <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_4" data-rating="4"></i>
-                                                        <i class="zmdi zmdi-star star-light submit_star mr-1" id="submit_star_5" data-rating="5"></i>
+                                                        @for($i=1;$i<=5;$i++)
+                                                            <i class="zmdi zmdi-star @if($i<=getReviewData(Auth::user()->id,$book->id)) text-warning @else star-light @endif submit_star mr-1" id="submit_star_{{$i}}" data-rating="{{$i}}"></i>
+                                                        @endfor
                                                         <button class="btn tocart rounded ml-4 save_review">Submit</button>
                                                     </div>
                                                 </div>
@@ -211,53 +209,33 @@
                     </div>
                     <br>
                     @auth
-                    <div class="review mb-3">
-                        <div class="user-info d-flex align-items-center">
-                            <img class="user-img rounded-circle ml-1" src="https://lh3.googleusercontent.com/a-/AOh14GgJOcR_5UjbowPU_85l4c1aFnRikoocg7kO6UEBgCE=s96-c" alt="user-img" width="40">
-                            <div class="info">
-                                <div class="name-date ml-3">
-                                    <small class="d-inline-block name">By <span>Mehrab Hossain Sifat</span>, </small>
-                                    <small class="date d-inline-block"> 01 May 2021</small>
-                                    <div class="user-rating">
-                                        <i class="zmdi zmdi-star rating-color mr-1" id="submit_star_1" data-rating="1"></i>
-                                        <i class="zmdi zmdi-star rating-color mr-1" id="submit_star_2" data-rating="2"></i>
-                                        <i class="zmdi zmdi-star rating-color mr-1" id="submit_star_3" data-rating="3"></i>
-                                        <i class="zmdi zmdi-star rating-color mr-1" id="submit_star_4" data-rating="4"></i>
-                                        <i class="zmdi zmdi-star rating-color mr-1" id="submit_star_5" data-rating="5"></i>
+                        @foreach($reviews as $review)
+                        @if($review->user_rating != 0 && $review->user_review != null)
+                        <div class="review mb-3">
+                            <div class="user-info d-flex align-items-center">
+                                <img class="user-img rounded-circle ml-1" src="https://lh3.googleusercontent.com/a-/AOh14GgJOcR_5UjbowPU_85l4c1aFnRikoocg7kO6UEBgCE=s96-c" alt="user-img" width="40">
+                                <div class="info">
+                                    <div class="name-date ml-3">
+                                        <small class="d-inline-block name">By <span>{{$review->getUser->name}}</span>, </small>
+                                        <small class="date d-inline-block"> {{readableDate($review->created_at)}}</small>
+                                        <div class="top">
+                                            <div class="user-rating{{$review->getUser->id}}">
+                                                @for($i=1;$i<=$review->user_rating;$i++)
+                                                    <i class="zmdi zmdi-star rating-color" id="submit_star_1" data-rating="1"></i>
+                                                @endfor
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="review-content">
-                            <p class="review-text js--review-short mt-1">মোশতাক আহমেদ এর শিশিলিন সিরিজের একটি অন্য তম বই জমিদারের গুপ্তধন। পেপারে একটি চিঠি দেখে শংকর রায়ের গুপ্তধন সম্পর্কে জানতে পারে লেলিন। সে জানায় তার ভাইকে। তার যায় গুপ্তধন খুঁজে বের করতে। কিন্তু তারা জানতে পারে যার সঙ্গে দেখা করার জন্য যায় সে আর বেচে নেই। আসলে কি তিনি মারা গেছেন না তাকে খুন করা হয়েছে। তারা কি পায় গুপ্তধন। জানতে পারে কে মারে তাকে।<br> </p>
-                            <p class="js--review-read-more d-none">Read More</p>
-                        </div>
-                    </div>
-
-                    <div class="review">
-                        <div class="user-info d-flex align-items-center">
-                            <img class="user-img rounded-circle ml-1" src="https://lh3.googleusercontent.com/a-/AOh14GgJOcR_5UjbowPU_85l4c1aFnRikoocg7kO6UEBgCE=s96-c" alt="user-img" width="40">
-                            <div class="info">
-                                <div class="name-date ml-3">
-                                    <small class="d-inline-block name">By <span>Mehrab Hossain Sifat</span>, </small>
-                                    <small class="date d-inline-block"> 01 May 2021</small>
-                                    <div class="user-rating">
-                                        <i class="zmdi zmdi-star rating-color mr-1" id="submit_star_1" data-rating="1"></i>
-                                        <i class="zmdi zmdi-star rating-color mr-1" id="submit_star_2" data-rating="2"></i>
-                                        <i class="zmdi zmdi-star rating-color mr-1" id="submit_star_3" data-rating="3"></i>
-                                        <i class="zmdi zmdi-star rating-color mr-1" id="submit_star_4" data-rating="4"></i>
-                                        <i class="zmdi zmdi-star rating-color mr-1" id="submit_star_5" data-rating="5"></i>
-                                    </div>
-                                </div>
+                            <div class="review-content{{$review->getUser->id}}">
+                                <p class="review-text js--review-short mt-1">{{$review->user_review}}<br></p>
+                                <p class="js--review-read-more d-none">Read More</p>
                             </div>
                         </div>
-                        <div class="review-content">
-                            <p class="review-text js--review-short mt-1">Good Commentator is here.<br> </p>
-                            <p class="js--review-read-more d-none">Read More</p>
-                        </div>
-                    </div>
+                        @endif
+                        @endforeach
                     @endauth
-
                 </section>
             </div>
             <div class="col-lg-3 col-12 md-mt-40 sm-mt-40">
@@ -297,17 +275,30 @@
         $.ajax({
             url:"{{route('rating.store-update')}}",
             method:"POST",
-            data:{rating_data:rating_data,user_id:"{{Auth::user()->id}}",book_id:"{{$book->id}}",_token:"{{csrf_token()}}"},
+            data:{rating_data:rating_data,user_id:"{{CheckUser()}}",book_id:"{{$book->id}}",_token:"{{csrf_token()}}"},
             success:function(data)
             {   
                 $('html, body').animate(
                     {
                         scrollTop: $('#success-message').offset().top - 70
                     },
-                        'slow',
-                        'swing'
-                    );
+                    'slow',
+                    'swing'
+                );
                 console.log(data);
+                var rateshow = '';
+                for(var i=1;i<=data.rating;i++){
+                    rateshow += '<i class="zmdi zmdi-star rating-color mr-1" id="submit_star_1" data-rating="1"></i>'
+                }
+                if(data.rating && !data.user_review){
+                    rateshow = '';
+                }else if(data.rating && data.user_review){
+                    $('.user-rating'+data.user_id).html(rateshow);	
+                }else if(!data.rating && data.user_review){
+                    $('.user-rating'+data.user_id).html(rateshow);
+                }
+                console.log(rateshow);
+                $('#error-message').html('');
                 $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for your rating.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             }
         })
@@ -330,7 +321,7 @@
             $.ajax({
                 url:"{{route('review.store-update')}}",
                 method:"POST",
-                data:{review_data:review_data,user_id:"{{Auth::user()->id}}",book_id:"{{$book->id}}",_token:"{{csrf_token()}}"},
+                data:{review_data:review_data,user_id:"{{CheckUser()}}",book_id:"{{$book->id}}",_token:"{{csrf_token()}}"},
                 success:function(data)
                 {   
                     console.log(data);
@@ -341,6 +332,11 @@
                         'slow',
                         'swing'
                     );
+                    var reviewShow = '';
+                        reviewShow +='<p class="review-text js--review-short mt-1">'+data.user_review+'<br></p>';
+                    if(data.user_review){
+                        $('.review-content'+data.user_id).html(reviewShow);	
+                    }
                     $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for submitting your valueable opinion.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                     $('#error-message').html('');
                     $('.review_data').val('');
@@ -348,5 +344,33 @@
             });
         }
     });
+</script>
+<script>
+		var rating_data = 0;
+        rating_data = "{{getReviewData(Auth::user()->id,$book->id)}}";
+		$(document).on('mouseenter', '.submit_star', function(){
+			var rating = $(this).data('rating');
+			reset_background();
+			for(var count = 1; count <= rating; count++)
+			{
+				$('#submit_star_'+count).addClass('text-warning');
+			}
+		});
+		function reset_background()
+		{
+			for(var count = 1; count <= 5; count++)
+			{
+				$('#submit_star_'+count).addClass('star-light');
+				$('#submit_star_'+count).removeClass('text-warning');
+			}
+		}
+		$(document).on('mouseleave', '.submit_star', function(){
+			reset_background();
+			for(var count = 1; count <= rating_data; count++)
+			{
+				$('#submit_star_'+count).removeClass('star-light');
+				$('#submit_star_'+count).addClass('text-warning');
+			}
+		});
 </script>
 @endsection
