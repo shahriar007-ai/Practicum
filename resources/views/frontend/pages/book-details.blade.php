@@ -160,9 +160,10 @@
                         <div class="details-ratings-review__content">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="media ratings-review__content--rating">
-                                    <h5 class="pt-1 rating-color mt-2">4.88</h5>
+                                    <h5 class="pt-1 rating-color mt-2"><span class="avg_rating">{{$avg_rating}}</span></h5>
                                     <div class="media-body ml-4 ">
-                                        <p class="text-secondary">8 Ratings  and 5  Reviews</p>
+                                        <p class="text-secondary">
+                                       <span class="t_rating"> @if($total_rating!=0){{$total_rating}}@endif </span> Ratings and <span class="t_review">{{$total_review}}</span> Reviews</p>
                                         <span id="js--rating">
                                             <h6 class="">
                                                 <i class="zmdi zmdi-star rating-color mr-1"></i>
@@ -287,13 +288,19 @@
                 );
                 console.log(data);
                 var rateshow = '';
+
+                $('.t_rating').html(data.rate_count);
+                $('.t_review').html(data.review_count);
+                $('.avg_rating').html(data.avg_rating);
                 for(var i=1;i<=data.rating;i++){
                     rateshow += '<i class="zmdi zmdi-star rating-color mr-1" id="submit_star_1" data-rating="1"></i>'
                 }
+                
+
                 if(data.rating && !data.user_review){
                     rateshow = '';
                 }else if(data.rating && data.user_review){
-                    $('.user-rating'+data.user_id).html(rateshow);	
+                    $('.user-rating'+data.user_id).html(rateshow);
                 }else if(!data.rating && data.user_review){
                     $('.user-rating'+data.user_id).html(rateshow);
                 }
@@ -333,7 +340,10 @@
                         'swing'
                     );
                     var reviewShow = '';
-                        reviewShow +='<p class="review-text js--review-short mt-1">'+data.user_review+'<br></p>';
+                    $('.t_rating').html(data.rate_count);
+                    $('.t_review').html(data.review_count);
+                    $('.avg_rating').html(data.avg_rating);
+                    reviewShow +='<p class="review-text js--review-short mt-1">'+data.user_review+'<br></p>';
                     if(data.user_review){
                         $('.review-content'+data.user_id).html(reviewShow);	
                     }
@@ -347,7 +357,7 @@
 </script>
 <script>
 		var rating_data = 0;
-        rating_data = "{{getReviewData(Auth::user()->id,$book->id)}}";
+        rating_data = "{{getReviewData(CheckUser(),$book->id)}}";
 		$(document).on('mouseenter', '.submit_star', function(){
 			var rating = $(this).data('rating');
 			reset_background();
