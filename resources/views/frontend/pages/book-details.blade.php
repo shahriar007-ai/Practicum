@@ -160,18 +160,62 @@
                         <div class="details-ratings-review__content">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="media ratings-review__content--rating">
-                                    <h5 class="pt-1 rating-color mt-2"><span class="avg_rating">{{$avg_rating}}</span></h5>
+                                    <h5 class="pt-1 rating-color mt-2"><span class="avg_rating">@if($total_rating!=0){{$avg_rating}}@endif</span></h5>
                                     <div class="media-body ml-4 ">
-                                        <p class="text-secondary">
-                                       <span class="t_rating"> @if($total_rating!=0){{$total_rating}}@endif </span> Ratings and <span class="t_review">{{$total_review}}</span> Reviews</p>
+                                            @if($total_rating!=0 || $total_review!=0)
+                                                <p class="text-secondary">
+                                                    <span class="t_rating"> 
+                                                        @if($total_rating!=0)
+                                                            {{$total_rating}}
+                                                            @if($total_rating==1)
+                                                                Rating 
+                                                            @else
+                                                                Ratings
+                                                            @endif
+                                                        @else 
+                                                            No Rating
+                                                        @endif  
+                                                    </span>  
+                                                    <span class="t_review">
+                                                        @if($total_review!=0) , 
+                                                            {{$total_review}}
+                                                            @if($total_review==1)
+                                                                Review
+                                                            @else 
+                                                                Reviews 
+                                                            @endif 
+                                                        @else 
+                                                            , No Review
+                                                        @endif
+                                                    </span>
+                                                </p>
+                                            @else
+                                                <p class="text-secondary">
+                                                    <span class="t_rating"></span>  
+                                                    <span class="t_review"></span>
+                                                    <span class="no-rating-review">No Raitng and Review Found.</span>
+                                                </p>
+                                            @endif
                                         <span id="js--rating">
-                                            <h6 class="">
-                                                <i class="zmdi zmdi-star rating-color mr-1"></i>
-                                                <i class="zmdi zmdi-star rating-color mr-1"></i>
-                                                <i class="zmdi zmdi-star rating-color mr-1"></i>
-                                                <i class="zmdi zmdi-star rating-color mr-1"></i>
-                                                <i class="zmdi zmdi-star-half rating-color mr-1"></i>
-                                            </h6>
+                                            @if($total_rating==0)
+                                                <h6 class="">
+                                                    <span class="whole"></span>
+                                                    <span class="fraction"></span>
+                                                </h6>
+                                            @else
+                                                <h6 class="">
+                                                    <span class="whole">
+                                                        @for($i=1;$i<=$whole;$i++)
+                                                            <i class="zmdi zmdi-star rating-color mr-1"></i>
+                                                        @endfor
+                                                    </span>
+                                                    <span class="fraction">
+                                                        @if($fraction !=0)
+                                                            <i class="zmdi zmdi-star-half rating-color mr-1"></i>
+                                                        @endif
+                                                    </span>
+                                                </h6>
+                                            @endif
                                         </span>
                                     </div>
                                 </div>
@@ -193,7 +237,7 @@
                                         <div class="ratings-review__content--form">
                                             <form class="js--review-form">
                                                 <div class="form-group">
-                                                    <textarea class="form-control review_data" id="js--review-writing" rows="3" placeholder="Please write your honest opinion"></textarea>
+                                                    <textarea class="form-control review_data" id="js--review-writing" rows="3" placeholder="Please write your honest opinion">@if(!empty($auth_user_review)){{$auth_user_review->user_review}}@endif</textarea>
                                                     <div class="d-flex align-items-center mt-4 ml-2 h4">
                                                         @for($i=1;$i<=5;$i++)
                                                             <i class="zmdi zmdi-star @if($i<=getReviewData(Auth::user()->id,$book->id)) text-warning @else star-light @endif submit_star mr-1" id="submit_star_{{$i}}" data-rating="{{$i}}"></i>
@@ -210,32 +254,32 @@
                     </div>
                     <br>
                     @auth
+                    <div id="review">
                         @foreach($reviews as $review)
-                        @if($review->user_rating != 0 && $review->user_review != null)
-                        <div class="review mb-3">
-                            <div class="user-info d-flex align-items-center">
-                                <img class="user-img rounded-circle ml-1" src="https://lh3.googleusercontent.com/a-/AOh14GgJOcR_5UjbowPU_85l4c1aFnRikoocg7kO6UEBgCE=s96-c" alt="user-img" width="40">
-                                <div class="info">
-                                    <div class="name-date ml-3">
-                                        <small class="d-inline-block name">By <span>{{$review->getUser->name}}</span>, </small>
-                                        <small class="date d-inline-block"> {{readableDate($review->created_at)}}</small>
-                                        <div class="top">
-                                            <div class="user-rating{{$review->getUser->id}}">
-                                                @for($i=1;$i<=$review->user_rating;$i++)
-                                                    <i class="zmdi zmdi-star rating-color" id="submit_star_1" data-rating="1"></i>
-                                                @endfor
+                            <div class="review mb-3" data-userid="{{$review->user_id}}">
+                                <div class="user-info d-flex align-items-center">
+                                    <img class="user-img rounded-circle ml-1" src="{{asset($review->getUser->photo)}}" alt="user-img" width="40">
+                                    <div class="info">
+                                        <div class="name-date ml-3">
+                                            <small class="d-inline-block name">By <span>{{$review->getUser->name}}</span>, </small>
+                                            <small class="date d-inline-block"> {{readableDate($review->created_at)}}</small>
+                                            <div class="top">
+                                                <div class="user-rating">
+                                                    @for($i=1;$i<=$review->user_rating;$i++)
+                                                        <i class="zmdi zmdi-star rating-color" id="submit_star_1" data-rating="1"></i>
+                                                    @endfor
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="review-content">
+                                    <p class="review-text js--review-short mt-1">{{$review->user_review}}<br></p>
+                                    <p class="js--review-read-more d-none">Read More</p>
+                                </div>
                             </div>
-                            <div class="review-content{{$review->getUser->id}}">
-                                <p class="review-text js--review-short mt-1">{{$review->user_review}}<br></p>
-                                <p class="js--review-read-more d-none">Read More</p>
-                            </div>
-                        </div>
-                        @endif
                         @endforeach
+                    </div>
                     @endauth
                 </section>
             </div>
@@ -286,34 +330,142 @@
                     'slow',
                     'swing'
                 );
-                console.log(data);
                 var rateshow = '';
+                var showStar='';
+                var whole='';
+                var fraction='';
+                var avgStar='';
+                var fractionStar='';
 
-                $('.t_rating').html(data.rate_count);
-                $('.t_review').html(data.review_count);
-                $('.avg_rating').html(data.avg_rating);
-                for(var i=1;i<=data.rating;i++){
-                    rateshow += '<i class="zmdi zmdi-star rating-color mr-1" id="submit_star_1" data-rating="1"></i>'
+                whole = data.whole;
+                console.log(whole);
+                fraction  = data.fraction;
+                if(whole > 0){
+                    for(var i=1;i<=whole;i++){
+                        console.log('in')
+                        avgStar+='<i class="zmdi zmdi-star rating-color mr-1"></i>';
+                    }
+                    $('.whole').html(avgStar);
+                }
+
+                if(fraction > 0){
+                    fractionStar ='<i class="zmdi zmdi-star-half rating-color mr-1"></i>'
+                    $('.fraction').html(fractionStar);
+                }else{
+                    $('.fraction').html('');
+                }
+
+                if(data.rate_count > 1){
+                    $('.t_rating').html(data.rate_count+' Ratings');
+                    $('.no-rating-review').html('');
+                }else if(data.rate_count == 1){
+                    console.log('da')
+                    $('.t_rating').html(data.rate_count+' Rating');
+                    $('.no-rating-review').html('');
                 }
                 
+                if(data.review_count == 0){
+                    $('.t_review').html(', No Review');
+                    $('.no-rating-review').html('');
+                }else{
+                    if(data.review_count > 1){
+                        $('.t_review').html(data.review_count+' Reviews');
+                        $('.no-rating-review').html('');
+                    }else if(data.review_count == 1){
+                        $('.t_review').html(data.review_count+' Review');
+                        $('.no-rating-review').html('');
+                    }
+                }
 
+                $('.avg_rating').html(data.avg_rating);
+                $('.review_data').html(data.user_review);
+                for(var i=1;i<=data.rating;i++){
+                    showStar += '<i class="zmdi zmdi-star rating-color mr-1" id="submit_star_1" data-rating="1"></i>'
+                }
+                
                 if(data.rating && !data.user_review){
                     rateshow = '';
+                    $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for your rating.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    $('#error-message').html('');
                 }else if(data.rating && data.user_review){
-                    $('.user-rating'+data.user_id).html(rateshow);
+                    if($('#review .review[data-userid='+data.user_id+']').length <= 0){
+                        console.log('i am here')
+                        rateshow +=` 
+                        <div class="review mb-3">
+                            <div class="user-info d-flex align-items-center">
+                                <img class="user-img rounded-circle ml-1" src="{{asset('`+data.user_photo+`')}}" alt="user-img" width="40">
+                                <div class="info">
+                                    <div class="name-date ml-3">
+                                        <small class="d-inline-block name">By <span>`+data.user_name+`</span>, </small>
+                                        <small class="date d-inline-block">`+data.review_date+`</small>
+                                        <div class="top">
+                                            <div class="user-rating">`+
+                                            showStar
+                                            +`</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <p class="review-text js--review-short mt-1">`+data.user_review+`<br></p>
+                                <p class="js--review-read-more d-none">Read More</p>
+                            </div>
+                        </div>`;
+                        $('#review').prepend(rateshow);
+                        $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for your rating.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                        $('#error-message').html('');
+                    }else{
+                        var newReview = data.user_review;
+                        var newDate = data.review_date;
+                        $('#review .review[data-userid='+data.user_id+'] .user-info .info .name-date .top .user-rating').html(showStar)
+                        $('#review .review[data-userid='+data.user_id+'] .user-info .info .name-date .date').html(newDate)
+                        $('#review .review[data-userid='+data.user_id+'] .review-content .review-text').html(newReview)
+                        $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for your rating.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                        $('#error-message').html('');
+                    }
+ 
                 }else if(!data.rating && data.user_review){
-                    $('.user-rating'+data.user_id).html(rateshow);
+                    if($('#review .review[data-userid='+data.user_id+']').length <= 0){
+                        rateshow +=` 
+                        <div class="review mb-3">
+                            <div class="user-info d-flex align-items-center">
+                                <img class="user-img rounded-circle ml-1" src="/`+data.user_photo+`" alt="user-img" width="40">
+                                <div class="info">
+                                    <div class="name-date ml-3">
+                                        <small class="d-inline-block name">By <span>`+data.user_name+`</span>, </small>
+                                        <small class="date d-inline-block">`+data.review_date+`</small>
+                                        <div class="top">
+                                            <div class="user-rating">`+
+                                            showStar
+                                            +`</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-content3">
+                                <p class="review-text js--review-short mt-1">`+data.user_review+`<br></p>
+                                <p class="js--review-read-more d-none">Read More</p>
+                            </div>
+                        </div>`;
+                        $('#review').prepend(rateshow);
+                        $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for your rating.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                        $('#error-message').html('');
+                    }else{
+                        var newReview = data.user_review;
+                        var newDate = data.review_date;
+                        $('#review .review[data-userid='+data.user_id+'] .user-info .info .name-date .top .user-rating').html(showStar)
+                        $('#review .review[data-userid='+data.user_id+'] .user-info .info .name-date .date').html(newDate)
+                        $('#review .review[data-userid='+data.user_id+'] .review-content .review-text').html(newReview)
+                        $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for your rating.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                        $('#error-message').html('');
+                    }
                 }
-                console.log(rateshow);
-                $('#error-message').html('');
-                $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for your rating.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             }
         })
     });
     $(document).on('click', '.save_review', function(e){
         e.preventDefault();
         var review_data = $('.review_data').val();
-        console.log(review_data);
         if(review_data == ''){
             $('html, body').animate(
             {
@@ -340,16 +492,77 @@
                         'swing'
                     );
                     var reviewShow = '';
-                    $('.t_rating').html(data.rate_count);
-                    $('.t_review').html(data.review_count);
-                    $('.avg_rating').html(data.avg_rating);
-                    reviewShow +='<p class="review-text js--review-short mt-1">'+data.user_review+'<br></p>';
-                    if(data.user_review){
-                        $('.review-content'+data.user_id).html(reviewShow);	
+                    var showStar='';
+                    for(var i=1;i<=data.rating;i++){
+                        showStar += '<i class="zmdi zmdi-star rating-color mr-1" id="submit_star_1" data-rating="1"></i>'
                     }
-                    $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for submitting your valueable opinion.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-                    $('#error-message').html('');
-                    $('.review_data').val('');
+
+                    console.log(data.rate_count)
+                    if(data.rate_count == 0){
+                        $('.t_rating').html('No Rating');
+                        $('.no-rating-review').html('');
+                    }else if(data.rate_count == 1 ){
+                        console.log('dad')
+                        $('.t_rating').html(data.rate_count+' Rating');
+                        $('.no-rating-review').html('');
+                    }else if(data.rate_count > 1){
+                        $('.t_rating').html(data.rate_count+' Ratings');
+                        $('.no-rating-review').html('');
+                    }
+                    console.log('review count'+data.review_count)
+                    if(data.review_count == 0){
+                        $('.t_review').html(', No Review');
+                        $('.no-rating-review').html('');
+                    }else{
+                        if(data.review_count > 1){
+                            $('.t_review').html(data.review_count+' Reviews');
+                            $('.no-rating-review').html('');
+                        }else if(data.review_count == 1){
+                            $('.t_review').html(data.review_count+' Review');
+                            $('.no-rating-review').html('');
+                        }
+                    }
+
+                    $('.avg_rating').html(data.avg_rating);
+                    if(data.user_review){
+                        var t =$('#review .review[data-userid='+data.user_id+']').length;
+                        console.log(t);
+                        console.log(data.user_id);
+                        if($('#review .review[data-userid='+data.user_id+']').length <= 0){
+                            reviewShow +=` 
+                            <div class="review" data-userid="`+data.user_id+`" mb-3">
+                                <div class="user-info d-flex align-items-center">
+                                    <img class="user-img rounded-circle ml-1" src="/`+data.user_photo+`" alt="user-img" width="40">
+                                    <div class="info">
+                                        <div class="name-date ml-3">
+                                            <small class="d-inline-block name">By <span>`+data.user_name+`</span>, </small>
+                                            <small class="date d-inline-block">`+data.review_date+`</small>
+                                            <div class="top">
+                                                <div class="user-rating">`+
+                                                showStar
+                                                +`</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="review-content">
+                                    <p class="review-text js--review-short mt-1">`+data.user_review+`<br></p>
+                                    <p class="js--review-read-more d-none">Read More</p>
+                                </div>
+                            </div>`;
+                            $('#review').prepend(reviewShow);
+                            $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for your rating.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                            $('#error-message').html('');
+                        }else{
+                            var newReview = data.user_review;
+                            console.log(newReview);
+                            var newDate = data.review_date;
+                            $('#review .review[data-userid='+data.user_id+'] .user-info .info .name-date .date').html(newDate)
+                            $('#review .review[data-userid='+data.user_id+'] .review-content .review-text').html(newReview)
+                            $('#success-message').html('<div class="alert alert-success alert-dismissible fade show" role="alert">Thank you for your rating.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                            $('#error-message').html('');
+                        }
+                    }
                 }
             });
         }
